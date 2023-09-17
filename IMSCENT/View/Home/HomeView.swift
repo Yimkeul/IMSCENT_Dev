@@ -10,48 +10,54 @@ import SwiftUI
 struct HomeView: View {
 
     @AppStorage("isFirst") var isFirst: Bool = true
-
+    @State private var navService: Bool = false
     var body: some View {
-        VStack {
-            // MARK: 버튼 그룹
-            ButtonGroup()
-            Spacer()
-            Image("Logo")
-                .resizable()
-                .scaledToFit()
+        NavigationStack {
             GeometryReader {
                 geo in
-                Spacer().frame(height: geo.size.height)
-            }
-            ButtonStart().padding(.bottom,16)
+                VStack {
+                    // MARK: 버튼 그룹
+                    ButtonGroup()
+                    Spacer()
+                    Image("Logo")
+                        .resizable()
+                        .scaledToFit()
+                    Spacer().frame(height: geo.size.height*0.4)
+                    ButtonStart().padding(.bottom, geo.size.height*0.1)
+                }
+                    .frame(width: geo.size.width, height: geo.size.height)
+
+            }.padding()
+
         }
-            .padding()
     }
 
     @ViewBuilder
     private func ButtonStart() -> some View {
-            Button {
-                print("시작하기")
-            } label: {
-                ZStack{
-                    Rectangle()
+        Button {
+            navService.toggle()
+            print("시작하기. \(navService.description)")
+        } label: {
+            ZStack {
+                Rectangle()
                     .foregroundColor(.clear)
                     .frame(width: 240, height: 40)
                     .background(Color(red: 0.13, green: 0.13, blue: 0.13))
                     .cornerRadius(8)
-                    
-                    Text("시작하기")
+
+                Text("시작하기")
                     .font(
                     Font.custom("SF Pro Text", size: 16)
-                    .weight(.semibold)
-                    )
+                        .weight(.semibold)
+                )
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white)
-                }
             }
-        
-        
-
+        }
+        .navigationDestination(isPresented: $navService) {
+            ServiceView_1()
+                
+        }
     }
 
     @ViewBuilder
@@ -66,7 +72,6 @@ struct HomeView: View {
                     .imageScale(.large)
             }.sheet(isPresented: $isFirst) {
                 ModalIntroView(isFirst: $isFirst)
-//                    .presentationDetents([.fraction(0.8)])
                     .presentationDetents([.fraction(0.9)])
                     .presentationDragIndicator(.visible)
             }.padding(.trailing, 16)
