@@ -7,18 +7,89 @@
 
 import SwiftUI
 
+struct CustomPageControl: View {
+    let numberOfPages: Int
+    @Binding var currentPage: Int
+    @Binding var isAnimation: Bool
+    var body: some View {
+        HStack(spacing: 8) {
+            ForEach(0..<numberOfPages, id: \.self) { page in
+                Image(systemName: "minus")
+                    .resizable()
+                    .frame(width: page == currentPage ? 40 : 20, height: page == currentPage ? 8 : 6)
+                    .foregroundColor(page == currentPage ? .black : Color.cWG)
+                    .animation(.easeInOut, value: isAnimation)
+            }
+        }
+    }
+}
+
 struct ModalIntroView: View {
     @Binding var isFirst: Bool
+    @State private var isAnimation: Bool = false
+    @State private var currentPage = 0
+    let numberOfPages = 3
+
     var body: some View {
         ZStack {
-            Color.cGray.ignoresSafeArea()
-            TabView {
-                IntroView1()
-                IntroView2()
-                IntroViewTest(isFirst: $isFirst)
+//            Color.cGray.ignoresSafeArea()
+            VStack {
+                TabView(selection: $currentPage) {
+
+                    IntroView1()
+                        .tag(0)
+                        .tabItem {
+                        Image(systemName: "minus")
+                    }
+
+                    IntroView2()
+                        .tag(1)
+                        .tabItem {
+                        Image(systemName: "minus")
+                    }
+
+                    IntroViewTest(isFirst: $isFirst)
+                        .tag(2)
+                        .tabItem {
+                        Image(systemName: "minus")
+                    }
+
+                }
+                    .tabViewStyle(PageTabViewStyle())
+                    .animation(.easeInOut, value: isAnimation)
+
+                CustomPageControl(numberOfPages: numberOfPages, currentPage: $currentPage, isAnimation: $isAnimation)
+
+
+                Divider()
+                    .padding(.vertical, 20)
+
+                Button {
+                    currentPage += 1
+                    if currentPage > 2 {
+                        isFirst.toggle()
+                        print("완료")
+                    }
+                    isAnimation.toggle()
+                } label: {
+                    ZStack {
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 240, height: 40)
+                            .background(Color(red: 0.13, green: 0.13, blue: 0.13))
+                            .cornerRadius(8)
+
+                        Text(currentPage < 2 ? "다음" : "완료")
+                            .font(
+                            Font.custom("SF Pro Text", size: 16)
+                                .weight(.semibold)
+                        )
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                    }
+                }
+                Spacer()
             }
-                .tabViewStyle(PageTabViewStyle())
-                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         }
     }
 }
@@ -41,20 +112,8 @@ private func IntroView2() -> some View {
 struct IntroViewTest: View {
     @Binding var isFirst: Bool
     var body: some View {
-        GeometryReader {
-            geo in
-            VStack {
-                Spacer()
-                Text("설명글 3번째")
-                Spacer()
-                Button {
-                    isFirst.toggle()
-                } label: {
-                    Text("모달 닫기")
-                }.padding(.bottom, geo.size.height*0.1)
-//                Text("wid:\(geo.size.width) , hei : \(geo.size.height)")
-//                Spacer().frame(height: geo.size.height * 0.15)
-            }.frame(width: geo.size.width, height: geo.size.height)
+        VStack {
+            Text("설명글 3번째")
         }
     }
 }
