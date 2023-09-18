@@ -9,63 +9,62 @@ import SwiftUI
 
 struct ServiceView_1: View {
     @StateObject var PA = ProgressAmount()
-    @State private var isAnimating = false // 애니메이션 상태를 관리합니다.
-    @State private var pageIndex = 0
+    @State private var isAnimating = false
     @State var isClick1: Bool = false
     @State var isClick2: Bool = false
 
 
     var body: some View {
         VStack {
-            ProgressView("테스트", value: PA.progressAmont, total: 30)
-                .padding()
-                .progressViewStyle(RoundedRectProgressViewStyle())
-                .onAppear {
-                withAnimation {
-                    isAnimating = true
-                }
-            }
-        
 
-            switch pageIndex {
-            case 0:
+            if PA.progressAmont <= 30 {
+                ProgressView("테스트", value: PA.progressAmont, total: 30)
+                    .padding()
+                    .progressViewStyle(RoundedRectProgressViewStyle())
+                    .animation(.spring(), value: isAnimating)
+            }
+
+            switch PA.progressAmont {
+            case 10:
                 pageOne()
-            case 1:
+            case 20:
                 pageTwo()
-            case 2:
+            case 30:
                 pageThree()
             default:
                 pageLoading()
             }
-            Text("aaaa : \(PA.progressAmont) , \(pageIndex)")
+            Text("aaaa : \(PA.progressAmont)")
         }
-            .animation(.easeInOut, value: isAnimating) // 애니메이션 활성화 상태에 따라 애니메이션 적용
+
     }
 
     @ViewBuilder
     private func pageOne() -> some View {
-        
-        
+
+
         VStack {
             Text("1111111")
             Spacer()
-            HStack{
+            HStack {
                 Button {
                     if isClick1 == false {
                         isClick1 = true
                         isClick2 = false
                     }
-                    print("Click 1" , isClick1, isClick2)
+                    isAnimating.toggle()
+                    print("Click 1", isClick1, isClick2)
                 } label: {
                     Text("첫번째 항목")
                 }
-                
+
                 Button {
                     if isClick2 == false {
                         isClick2 = true
                         isClick1 = false
                     }
-                    print("Click 2" , isClick1, isClick2)
+                    isAnimating.toggle()
+                    print("Click 2", isClick1, isClick2)
                 } label: {
                     Text("두번째 항목")
                 }
@@ -73,31 +72,13 @@ struct ServiceView_1: View {
             }
             Text("\(isClick1.description) || \(isClick2.description)")
             HStack {
-                Button {
-                    if PA.progressAmont > 0 {
-                        withAnimation {
-                            PA.progressAmont -= 10
-                        }
-                    }
-                    if pageIndex > 0 {
-                        pageIndex -= 1
-                    }
-
-                    print(PA.progressAmont, pageIndex)
-                } label: {
-                    Text("<<버튼")
-                }
                 Spacer()
                 Button {
                     if PA.progressAmont < 30 {
-                        withAnimation {
-                            PA.progressAmont += 10
-                        }
+                        PA.progressAmont += 10
                     }
-                    if pageIndex < 3 {
-                        pageIndex += 1
-                    }
-                    print(PA.progressAmont, pageIndex)
+                    isAnimating.toggle()
+                    print(PA.progressAmont)
                 } label: {
                     Text("버튼>>")
                 }
@@ -112,30 +93,21 @@ struct ServiceView_1: View {
             Spacer()
             HStack {
                 Button {
-                    if PA.progressAmont > 0 {
-                        withAnimation {
-                            PA.progressAmont -= 10
-                        }
+                    if PA.progressAmont > 10 {
+                        PA.progressAmont -= 10
                     }
-                    if pageIndex > 0 {
-                        pageIndex -= 1
-                    }
-
-                    print(PA.progressAmont, pageIndex)
+                    isAnimating.toggle()
+                    print(PA.progressAmont)
                 } label: {
                     Text("<<버튼")
                 }
                 Spacer()
                 Button {
                     if PA.progressAmont < 30 {
-                        withAnimation {
-                            PA.progressAmont += 10
-                        }
+                        PA.progressAmont += 10
                     }
-                    if pageIndex < 3 {
-                        pageIndex += 1
-                    }
-                    print(PA.progressAmont, pageIndex)
+                    isAnimating.toggle()
+                    print(PA.progressAmont)
                 } label: {
                     Text("버튼>>")
                 }
@@ -150,50 +122,41 @@ struct ServiceView_1: View {
             Spacer()
             HStack {
                 Button {
-                    if PA.progressAmont > 0 {
-                        withAnimation {
-                            PA.progressAmont -= 10
-                        }
-                    }
-                    if pageIndex > 0 {
-                        pageIndex -= 1
-                    }
+                    if PA.progressAmont > 10 {
+                        PA.progressAmont -= 10
 
-                    print(PA.progressAmont, pageIndex)
+                    }
+                    isAnimating.toggle()
+                    print(PA.progressAmont)
                 } label: {
                     Text("<<버튼")
                 }
                 Spacer()
                 Button {
-                    if PA.progressAmont < 30 {
-                        withAnimation {
-                            PA.progressAmont += 10
-                        }
+                    if PA.progressAmont <= 30 {
+                        PA.progressAmont += 10
                     }
-                    if pageIndex < 3 {
-                        pageIndex += 1
-                    }
-                    print(PA.progressAmont, pageIndex)
+                    print(PA.progressAmont)
                 } label: {
-                    Text("버튼>>")
+                    Text("분석하기")
                 }
+                Spacer()
             }.padding()
         }
     }
 
     @ViewBuilder
-    private func pageLoading()-> some View {
+    private func pageLoading() -> some View {
         VStack {
             ProgressView()
             Spacer()
             Button {
-                PA.progressAmont = 0.0
-                pageIndex = 0
+                PA.progressAmont = 10.0
             } label: {
                 Text("초기화")
             }
             Text("로딩")
-            
+
 
         }
     }
