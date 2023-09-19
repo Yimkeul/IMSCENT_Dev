@@ -13,7 +13,7 @@ class ServiceMethod: ObservableObject {
 
     @Published var isAnimating = false
     @Published var isSelect: [String?] = [nil, nil, nil]
-    @Published var goHome: Bool = false
+    @Published var isSelectedImageAnimating: Bool = false
 
     @StateObject var PP = PhotoPickerViewModel()
 

@@ -61,7 +61,7 @@ struct ModalIntroView: View {
 
 
                 Divider()
-                    .padding(.vertical, 20)
+                    .padding(.vertical, 16)
 
                 Button {
                     currentPage += 1
@@ -78,15 +78,12 @@ struct ModalIntroView: View {
                             .cornerRadius(8)
 
                         Text(currentPage < 2 ? "다음" : "완료")
-                            .font(
-                            Font.custom("SF Pro Text", size: 16)
-                                .weight(.semibold)
-                        )
-                            .multilineTextAlignment(.center)
+                            .font(.system(size: 16))
+                            .fontWeight(.semibold)
                             .foregroundColor(.white)
                     }
-                }
-                Spacer()
+                }.padding(.bottom, 32)
+                
             }
         }
     }
@@ -118,5 +115,11 @@ struct IntroViewTest: View {
 struct ModalIntroView_Previews: PreviewProvider {
     static var previews: some View {
         ModalIntroView(isFirst: .constant(true))
+            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+            .previewDisplayName("iPhone 8")
+        ModalIntroView(isFirst: .constant(true))
+            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
+            .previewDisplayName("iPhone 14 Pro")
+        
     }
 }

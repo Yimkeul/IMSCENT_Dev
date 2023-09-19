@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		86377A332AB5956C00DA49A3 /* ModalIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86377A322AB5956C00DA49A3 /* ModalIntroView.swift */; };
+		8694DDBD2AB984D300636CA1 /* QuesFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8694DDBC2AB984D300636CA1 /* QuesFirst.swift */; };
+		8694DDBF2AB9853D00636CA1 /* QuesSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8694DDBE2AB9853D00636CA1 /* QuesSecond.swift */; };
+		8694DDC12AB9856700636CA1 /* QuesThird.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8694DDC02AB9856700636CA1 /* QuesThird.swift */; };
 		869F24EC2AB91CA700DF9CAA /* PhotoPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F24EB2AB91CA700DF9CAA /* PhotoPickerViewModel.swift */; };
 		869F24F02AB91F1D00DF9CAA /* ServiceMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F24EF2AB91F1D00DF9CAA /* ServiceMethod.swift */; };
 		86B6BB722AB58DB4006344EB /* IMSCENTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6BB712AB58DB4006344EB /* IMSCENTApp.swift */; };
@@ -21,6 +24,9 @@
 
 /* Begin PBXFileReference section */
 		86377A322AB5956C00DA49A3 /* ModalIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalIntroView.swift; sourceTree = "<group>"; };
+		8694DDBC2AB984D300636CA1 /* QuesFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuesFirst.swift; sourceTree = "<group>"; };
+		8694DDBE2AB9853D00636CA1 /* QuesSecond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuesSecond.swift; sourceTree = "<group>"; };
+		8694DDC02AB9856700636CA1 /* QuesThird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuesThird.swift; sourceTree = "<group>"; };
 		869F24EB2AB91CA700DF9CAA /* PhotoPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewModel.swift; sourceTree = "<group>"; };
 		869F24EF2AB91F1D00DF9CAA /* ServiceMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMethod.swift; sourceTree = "<group>"; };
 		86B6BB6E2AB58DB4006344EB /* IMSCENT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMSCENT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +50,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8694DDBB2AB984BE00636CA1 /* Questions */ = {
+			isa = PBXGroup;
+			children = (
+				8694DDBC2AB984D300636CA1 /* QuesFirst.swift */,
+				8694DDBE2AB9853D00636CA1 /* QuesSecond.swift */,
+				8694DDC02AB9856700636CA1 /* QuesThird.swift */,
+			);
+			path = Questions;
+			sourceTree = "<group>";
+		};
 		869F24EA2AB91C9600DF9CAA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +142,7 @@
 		86C8871D2AB6CB0C00783D89 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				8694DDBB2AB984BE00636CA1 /* Questions */,
 				86C8871E2AB6CE2D00783D89 /* ServiceView.swift */,
 				86C887202AB6CF6F00783D89 /* ProgressData.swift */,
 				869F24EF2AB91F1D00DF9CAA /* ServiceMethod.swift */,
@@ -204,10 +221,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				869F24F02AB91F1D00DF9CAA /* ServiceMethod.swift in Sources */,
+				8694DDBF2AB9853D00636CA1 /* QuesSecond.swift in Sources */,
+				8694DDBD2AB984D300636CA1 /* QuesFirst.swift in Sources */,
 				86C8871F2AB6CE2D00783D89 /* ServiceView.swift in Sources */,
 				869F24EC2AB91CA700DF9CAA /* PhotoPickerViewModel.swift in Sources */,
 				86377A332AB5956C00DA49A3 /* ModalIntroView.swift in Sources */,
 				86B6BB742AB58DB4006344EB /* HomeView.swift in Sources */,
+				8694DDC12AB9856700636CA1 /* QuesThird.swift in Sources */,
 				86B6BB722AB58DB4006344EB /* IMSCENTApp.swift in Sources */,
 				86C887212AB6CF6F00783D89 /* ProgressData.swift in Sources */,
 				86C8871B2AB6C66D00783D89 /* ColorExtension.swift in Sources */,

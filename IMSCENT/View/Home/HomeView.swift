@@ -24,7 +24,7 @@ struct HomeView: View {
                         .resizable()
                         .scaledToFit()
                     Spacer().frame(height: geo.size.height*0.4)
-                    ButtonStart().padding(.bottom, geo.size.height*0.1)
+                    ButtonStart().padding(.bottom, 32)
                 }
                     .frame(width: geo.size.width, height: geo.size.height)
 
@@ -47,11 +47,8 @@ struct HomeView: View {
                     .cornerRadius(8)
 
                 Text("시작하기")
-                    .font(
-                    Font.custom("SF Pro Text", size: 16)
-                        .weight(.semibold)
-                )
-                    .multilineTextAlignment(.center)
+                    .font(.system(size: 16))
+                    .fontWeight(.semibold)
                     .foregroundColor(.white)
             }
         }
