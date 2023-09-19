@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class ProgressAmount: ObservableObject {
-    @Published var progressAmont: Double = 10.0
+    @Published var progressAmont: Double = 0.0
 }
 // 상단 상태바
 struct RoundedRectProgressViewStyle: ProgressViewStyle {

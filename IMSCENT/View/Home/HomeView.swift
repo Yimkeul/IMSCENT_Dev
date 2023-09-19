@@ -11,6 +11,7 @@ struct HomeView: View {
 
     @AppStorage("isFirst") var isFirst: Bool = true
     @State private var navService: Bool = false
+    
     var body: some View {
         NavigationStack {
             GeometryReader {
@@ -55,8 +56,7 @@ struct HomeView: View {
             }
         }
         .navigationDestination(isPresented: $navService) {
-            ServiceView_1()
-                
+            ServiceView().navigationBarHidden(true)
         }
     }
 
@@ -70,6 +70,7 @@ struct HomeView: View {
                 Image(systemName: "questionmark.circle")
                     .foregroundColor(Color.black)
                     .imageScale(.large)
+                    .fontWeight(.semibold)
             }.sheet(isPresented: $isFirst) {
                 ModalIntroView(isFirst: $isFirst)
                     .presentationDetents([.fraction(0.9)])
@@ -82,6 +83,7 @@ struct HomeView: View {
                 Image(systemName: "heart")
                     .foregroundColor(Color.black)
                     .imageScale(.large)
+                    .fontWeight(.semibold)
             }.sheet(isPresented: $isFirst) {
                 ModalIntroView(isFirst: $isFirst)
                     .presentationDetents([.fraction(0.8)])
@@ -95,7 +97,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-//        HomeView()
         HomeView()
             .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
             .previewDisplayName("iPhone 8")

@@ -32,7 +32,6 @@ struct ModalIntroView: View {
 
     var body: some View {
         ZStack {
-//            Color.cGray.ignoresSafeArea()
             VStack {
                 TabView(selection: $currentPage) {
 
@@ -68,7 +67,6 @@ struct ModalIntroView: View {
                     currentPage += 1
                     if currentPage > 2 {
                         isFirst.toggle()
-                        print("완료")
                     }
                     isAnimation.toggle()
                 } label: {
@@ -113,7 +111,7 @@ struct IntroViewTest: View {
     @Binding var isFirst: Bool
     var body: some View {
         VStack {
-            Text("설명글 3번째")
+            Text("설명글 3번째 화면")
         }
     }
 }
