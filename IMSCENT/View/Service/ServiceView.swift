@@ -15,7 +15,7 @@ struct ServiceView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        VStack() {
+        VStack {
             customNavBar()
             VStack {
                 if PA.progressAmont <= 30 {
@@ -24,20 +24,21 @@ struct ServiceView: View {
                         .animation(.linear, value:
                         SM.isAnimating)
                 }
-
                 switch PA.progressAmont {
                 case 0:
                     QuesFirst(SM: SM, PA: PA, PP: PP)
+                        .modifier(CAnimating(isSelectedImageAnimating: false))
                 case 10:
                     QuesSecond(SM: SM, PA: PA, PP: PP)
+                        .modifier(CAnimating(isSelectedImageAnimating: false))
                 case 20...30:
                     QuesThird(SM: SM, PA: PA, PP: PP)
-                case 40:
-                    pageLoading()
+                        .modifier(CAnimating(isSelectedImageAnimating: false))
                 default:
-                    EmptyView()
+                    pageLoading()
                 }
             }.padding()
+
         }
     }
 
@@ -55,17 +56,17 @@ struct ServiceView: View {
                         .imageScale(.large)
                         .fontWeight(.semibold)
                 }.disabled(PA.progressAmont == 40 ? true : false)
-                
+
                 Spacer()
-                
+
                 Image("Logo")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 122, height: 48)
                     .clipShape(Rectangle())
-                
+
                 Spacer()
-                
+
                 Button {
                     print("None")
                 } label: {
@@ -74,24 +75,24 @@ struct ServiceView: View {
                         .font(.system(.title, weight: .bold))
                 }.disabled(true)
             }.padding(.horizontal, 16)
-            
+
             Divider()
         }
     }
-    
+
     @ViewBuilder
     private func pageLoading() -> some View {
         VStack {
             ProgressView()
-            
+
             Spacer()
-            
+
             Button {
                 clearAll()
             } label: {
                 Text("초기화")
             }
-            
+
             Text("로딩")
         }
     }
@@ -105,9 +106,9 @@ struct ServiceView: View {
 
 struct ServiceView_Previews: PreviewProvider {
     static var previews: some View {
-        ServiceView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-            .previewDisplayName("iPhone 8")
+//        ServiceView()
+//            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+//            .previewDisplayName("iPhone 8")
         ServiceView()
             .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
             .previewDisplayName("iPhone 14 Pro")

@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
-
     @AppStorage("isFirst") var isFirst: Bool = true
     @State private var navService: Bool = false
+    @StateObject var PA = ProgressAmount()
+    
     
     var body: some View {
         NavigationStack {
@@ -36,8 +37,11 @@ struct HomeView: View {
     @ViewBuilder
     private func ButtonStart() -> some View {
         Button {
-            navService.toggle()
-            print("시작하기. \(navService.description)")
+            Task{
+                navService.toggle()
+                PA.progressAmont = 0
+                print("시작하기. \(navService.description)")
+            }
         } label: {
             ZStack {
                 Rectangle()
@@ -53,7 +57,8 @@ struct HomeView: View {
             }
         }
         .navigationDestination(isPresented: $navService) {
-            ServiceView().navigationBarHidden(true)
+            ServiceView(PA: PA).navigationBarHidden(true)
+            let _ = print(PA.progressAmont)
         }
     }
 

@@ -10,7 +10,8 @@ import SwiftUI
 import PhotosUI
 
 final class PhotoPickerViewModel: ObservableObject {
-    @Published private(set) var selectedImage: UIImage? = nil
+//    @Published private(set) var selectedImage: UIImage? = nil
+    @Published var selectedImage: UIImage? = nil
     @Published var imageSelection: PhotosPickerItem? = nil
     {
         didSet {
@@ -29,8 +30,11 @@ final class PhotoPickerViewModel: ObservableObject {
                 guard let data, let uiImage = UIImage(data: data) else {
                     throw URLError(.badServerResponse)
                 }
-                selectedImage = uiImage
-                print("success : \(data), \(uiImage) , \(String(describing: selectedImage))")
+                
+                DispatchQueue.main.async {
+                    self.selectedImage = uiImage
+                    print("success : \(data), \(uiImage) , \(String(describing: self.selectedImage))")
+                }
             } catch {
                 print(error)
             }

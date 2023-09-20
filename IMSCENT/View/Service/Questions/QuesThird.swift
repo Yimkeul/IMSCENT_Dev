@@ -16,18 +16,22 @@ struct QuesThird: View {
     var body: some View {
         GeometryReader { geo in
             VStack {
-                let _ = print("3 init : ", SM.isSelect)
-
                 SM.Title(title: "3) 사진 업로드")
-
                 Spacer()
 
                 ScrollView(showsIndicators: false) {
+                    Rectangle()
+                        .frame(width: geo.size.width * 0.88, height: geo.size.height * 0.3)
+                        .cornerRadius(8)
+                        .scaledToFit()
+                        .foregroundColor(Color.green)
+                    
                     if let image = PP.selectedImage {
                         PhotosPicker(selection: $PP.imageSelection) {
                             Image(uiImage: image)
                                 .resizable()
                                 .frame(width: geo.size.width * 0.88, height: geo.size.height * 0.55)
+                                .cornerRadius(8)
                                 .scaledToFit()
                                 .onAppear {
                                 PA.progressAmont = 30
@@ -41,11 +45,13 @@ struct QuesThird: View {
                             Image("DefaultImage")
                                 .resizable()
                                 .frame(width: geo.size.width * 0.88, height: geo.size.height * 0.55)
+                                .cornerRadius(8)
                                 .scaledToFit()
                                 .padding(.bottom, 16)
                         }
                     }
                 }
+//                .modifier(CAnimating(isSelectedImageAnimating: false))
 
                 Spacer()
 
@@ -59,14 +65,17 @@ struct QuesThird: View {
                                 .frame(width: geo.size.width * 0.88, height: 60)
                                 .background(Color(red: 0.13, green: 0.13, blue: 0.13))
 
+
                             Text("추천 향수 확인하기")
                                 .font(.system(size: 20))
                                 .fontWeight(.semibold)
                                 .foregroundColor(.white)
                         }
-                    } .offset(y: SM.isSelectedImageAnimating ? 0 : 20)
+                    }
+                        .cornerRadius(8)
+                        .offset(y: SM.isSelectedImageAnimating ? 0 : 20)
                         .opacity(SM.isSelectedImageAnimating ? 1 : 0)
-                        .animation(.easeOut(duration: 1.5).delay(0.5), value: SM.isSelectedImageAnimating)
+                        .animation(.easeInOut(duration: 1).delay(0.5), value: SM.isSelectedImageAnimating)
                         .onAppear {
                         SM.isSelectedImageAnimating.toggle()
                     }
