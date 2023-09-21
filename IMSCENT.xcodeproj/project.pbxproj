@@ -19,7 +19,8 @@
 		86B6BB792AB58DB5006344EB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B6BB782AB58DB5006344EB /* Preview Assets.xcassets */; };
 		86C8871B2AB6C66D00783D89 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C8871A2AB6C66D00783D89 /* ColorExtension.swift */; };
 		86C8871F2AB6CE2D00783D89 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C8871E2AB6CE2D00783D89 /* ServiceView.swift */; };
-		86C887212AB6CF6F00783D89 /* ProgressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C887202AB6CF6F00783D89 /* ProgressData.swift */; };
+		86C887212AB6CF6F00783D89 /* ProgressBarMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C887202AB6CF6F00783D89 /* ProgressBarMethod.swift */; };
+		86F637FE2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F637FD2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +37,8 @@
 		86B6BB782AB58DB5006344EB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		86C8871A2AB6C66D00783D89 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		86C8871E2AB6CE2D00783D89 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
-		86C887202AB6CF6F00783D89 /* ProgressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressData.swift; sourceTree = "<group>"; };
+		86C887202AB6CF6F00783D89 /* ProgressBarMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarMethod.swift; sourceTree = "<group>"; };
+		86F637FD2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalQuesDescriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				8694DDBC2AB984D300636CA1 /* QuesFirst.swift */,
 				8694DDBE2AB9853D00636CA1 /* QuesSecond.swift */,
 				8694DDC02AB9856700636CA1 /* QuesThird.swift */,
+				86F637FD2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift */,
 			);
 			path = Questions;
 			sourceTree = "<group>";
@@ -142,12 +145,20 @@
 		86C8871D2AB6CB0C00783D89 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				8694DDBB2AB984BE00636CA1 /* Questions */,
 				86C8871E2AB6CE2D00783D89 /* ServiceView.swift */,
-				86C887202AB6CF6F00783D89 /* ProgressData.swift */,
-				869F24EF2AB91F1D00DF9CAA /* ServiceMethod.swift */,
+				8694DDBB2AB984BE00636CA1 /* Questions */,
+				86F637FF2ABC92AD007C6B49 /* Method */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		86F637FF2ABC92AD007C6B49 /* Method */ = {
+			isa = PBXGroup;
+			children = (
+				86C887202AB6CF6F00783D89 /* ProgressBarMethod.swift */,
+				869F24EF2AB91F1D00DF9CAA /* ServiceMethod.swift */,
+			);
+			path = Method;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,7 +189,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					86B6BB6D2AB58DB4006344EB = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -229,8 +240,9 @@
 				86B6BB742AB58DB4006344EB /* HomeView.swift in Sources */,
 				8694DDC12AB9856700636CA1 /* QuesThird.swift in Sources */,
 				86B6BB722AB58DB4006344EB /* IMSCENTApp.swift in Sources */,
-				86C887212AB6CF6F00783D89 /* ProgressData.swift in Sources */,
+				86C887212AB6CF6F00783D89 /* ProgressBarMethod.swift in Sources */,
 				86C8871B2AB6C66D00783D89 /* ColorExtension.swift in Sources */,
+				86F637FE2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +253,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -301,6 +314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

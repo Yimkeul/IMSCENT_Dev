@@ -11,11 +11,7 @@ import SwiftUI
 
 class ServiceMethod: ObservableObject {
 
-    @Published var isAnimating = false
     @Published var isSelect: [String?] = [nil, nil, nil]
-    @Published var isSelectedImageAnimating: Bool = false
-
-
     @StateObject var PP = PhotoPickerViewModel()
 
     func clearSelect(_ index: Int) {
@@ -50,10 +46,8 @@ class ServiceMethod: ObservableObject {
 
     @ViewBuilder
     func Title(title: String) -> some View {
-        Text("\(title)")
-            .font(.system(size: 20, weight: .semibold))
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.vertical, 16)
+            Text("\(title)")
+                .font(.system(size: 20, weight: .semibold))
     }
 
     @ViewBuilder
@@ -68,39 +62,32 @@ class ServiceMethod: ObservableObject {
 
 
 struct CAnimating: ViewModifier {
-    @State var isSelectedImageAnimating: Bool
-
+    var isAnimating: Bool
 
     func body(content: Content) -> some View {
         content
-            .offset(y: isSelectedImageAnimating ? 0 : 20)
-            .opacity(isSelectedImageAnimating ? 1 : 0)
-            .animation(.easeInOut.delay(0.5), value: isSelectedImageAnimating)
-            .onAppear {
-                isSelectedImageAnimating.toggle()
-        }
-            .onDisappear() {
-            isSelectedImageAnimating.toggle()
-        }
+            .offset(y: isAnimating ? 0 : 10)
+            .opacity(isAnimating ? 1 : 0)
+            .animation(.easeInOut(duration: 0.8).delay(0.5), value: isAnimating)
     }
 }
 
 struct CAnimatingDelay: ViewModifier {
 
-    @State var isSelectedImageAnimating: Bool
+    @State var isAnimating: Bool
     let delay: Double
-
-
+    let duration: Double
+    
     func body(content: Content) -> some View {
         content
-            .offset(y: isSelectedImageAnimating ? 0 : 20)
-            .opacity(isSelectedImageAnimating ? 1 : 0)
-            .animation(.easeInOut.delay(delay), value: isSelectedImageAnimating)
+            .offset(y: isAnimating ? 0 : 10)
+            .opacity(isAnimating ? 1 : 0)
+            .animation(.easeInOut(duration: duration).delay(delay), value: isAnimating)
             .onAppear {
-            isSelectedImageAnimating.toggle()
+                isAnimating.toggle()
         }
             .onDisappear() {
-            isSelectedImageAnimating.toggle()
+                isAnimating.toggle()
         }
     }
 }

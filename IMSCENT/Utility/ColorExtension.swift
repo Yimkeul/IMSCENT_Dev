@@ -9,6 +9,6 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    static let cGray = Color("gray")
+    static let cGray = Color("transgray")
     static let cWG = Color("whitegray")
 }

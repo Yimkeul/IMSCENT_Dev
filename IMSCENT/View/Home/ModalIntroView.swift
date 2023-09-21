@@ -31,61 +31,61 @@ struct ModalIntroView: View {
     let numberOfPages = 3
 
     var body: some View {
-        ZStack {
-            VStack {
-                TabView(selection: $currentPage) {
 
-                    IntroView1()
-                        .tag(0)
-                        .tabItem {
-                        Image(systemName: "minus")
-                    }
+        VStack {
+            TabView(selection: $currentPage) {
 
-                    IntroView2()
-                        .tag(1)
-                        .tabItem {
-                        Image(systemName: "minus")
-                    }
-
-                    IntroViewTest(isFirst: $isFirst)
-                        .tag(2)
-                        .tabItem {
-                        Image(systemName: "minus")
-                    }
-
+                IntroView1()
+                    .tag(0)
+                    .tabItem {
+                    Image(systemName: "minus")
                 }
-                    .tabViewStyle(PageTabViewStyle())
-                    .animation(.easeInOut, value: isAnimation)
 
-                CustomPageControl(numberOfPages: numberOfPages, currentPage: $currentPage, isAnimation: $isAnimation)
+                IntroView2()
+                    .tag(1)
+                    .tabItem {
+                    Image(systemName: "minus")
+                }
 
+                IntroViewTest(isFirst: $isFirst)
+                    .tag(2)
+                    .tabItem {
+                    Image(systemName: "minus")
+                }
 
-                Divider()
-                    .padding(.vertical, 16)
-
-                Button {
-                    currentPage += 1
-                    if currentPage > 2 {
-                        isFirst.toggle()
-                    }
-                    isAnimation.toggle()
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 240, height: 40)
-                            .background(Color(red: 0.13, green: 0.13, blue: 0.13))
-                            .cornerRadius(8)
-
-                        Text(currentPage < 2 ? "다음" : "완료")
-                            .font(.system(size: 16))
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                    }
-                }.padding(.bottom, 32)
-                
             }
+                .tabViewStyle(PageTabViewStyle())
+                .animation(.easeInOut, value: isAnimation)
+
+            CustomPageControl(numberOfPages: numberOfPages, currentPage: $currentPage, isAnimation: $isAnimation)
+
+
+            Divider()
+                .padding(.vertical, 16)
+
+            Button {
+                currentPage += 1
+                if currentPage > 2 {
+                    isFirst.toggle()
+                }
+                isAnimation.toggle()
+            } label: {
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .frame(width: 240, height: 40)
+                        .background(Color(red: 0.13, green: 0.13, blue: 0.13))
+                        .cornerRadius(8)
+
+                    Text(currentPage < 2 ? "다음" : "완료")
+                        .font(.system(size: 16))
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                }
+            }.padding(.bottom, 32)
+
         }
+
     }
 }
 
@@ -115,11 +115,5 @@ struct IntroViewTest: View {
 struct ModalIntroView_Previews: PreviewProvider {
     static var previews: some View {
         ModalIntroView(isFirst: .constant(true))
-            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-            .previewDisplayName("iPhone 8")
-        ModalIntroView(isFirst: .constant(true))
-            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
-            .previewDisplayName("iPhone 14 Pro")
-        
     }
 }

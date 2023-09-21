@@ -9,46 +9,39 @@ import SwiftUI
 
 struct QuesFirst: View {
     @StateObject var SM = ServiceMethod()
-    @StateObject var PA = ProgressAmount()
+    @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
-    
+    @State private var isAnimating: Bool = false
+
     var body: some View {
         GeometryReader { geo in
-            VStack {
-                VStack {
-                    SM.Title(title: "성별을 선택해 주세요")
-                        .padding(.bottom, 16)
-                    Spacer()
-                    SM.TitleImage(image: "bubbles", width: geo.size.width * 0.4, height: geo.size.width * 0.4)
-                    Spacer()
-                } .frame(width: geo.size.width, height: geo.size.height * 0.5)
-                // MARK: 절반
-                VStack {
-                    Spacer()
-                    buttonBox()
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Button {
-                            Task {
-                                PA.progressAmont = 10
-                                SM.isAnimating.toggle()
-                                print("1) next :\(SM.isSelect)")
-                            }
-                        } label: {
-                            SM.next(isSelect: SM.isSelect[0])
-                        }.disabled(SM.isSelect[0] == nil)
-                    }
-                }
-                    .padding()
-                    .frame(width: geo.size.width, height: geo.size.height * 0.5)
+            VStack(spacing: 0) {
+                TopArea(width: geo.size.width * 0.4, height: geo.size.height * 0.2)
+                Spacer()
+                SelectBox()
+                Spacer()
+                BottomArea()
             }
-//            .modifier(CAnimating(isSelectedImageAnimating: false))
-        }
+                .padding()
+                .frame(width: geo.size.width, height: geo.size.height)
+                .modifier(CAnimating(isAnimating: isAnimating))
+        }.onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                isAnimating = true
+            })
+
+        })
     }
 
     @ViewBuilder
-    private func buttonBox() -> some View {
+    private func TopArea(width: Double, height: Double) -> some View {
+        VStack {
+            SM.Title(title: "성별을 선택해 주세요")
+            SM.TitleImage(image: "bubbles", width: width, height: height)
+        }
+    }
+    @ViewBuilder
+    private func SelectBox() -> some View {
         HStack(spacing: 16) {
             Button {
                 SM.isSelect[0] = "male"
@@ -73,7 +66,21 @@ struct QuesFirst: View {
         }
 
     }
-
+    @ViewBuilder
+    private func BottomArea() -> some View {
+        HStack {
+            Spacer()
+            Button {
+                Task {
+                    PM.progressAmont = 10
+                    PM.isAnimating.toggle()
+                    print("1) next :\(SM.isSelect)")
+                }
+            } label: {
+                SM.next(isSelect: SM.isSelect[0])
+            }.disabled(SM.isSelect[0] == nil)
+        }
+    }
     @ViewBuilder
     private func selectRRBtn (text: String) -> some View {
         ZStack {
@@ -85,7 +92,6 @@ struct QuesFirst: View {
                 .foregroundColor(.black)
         }
     }
-
     @ViewBuilder
     private func unSelectRRBtn (text: String) -> some View {
         ZStack {

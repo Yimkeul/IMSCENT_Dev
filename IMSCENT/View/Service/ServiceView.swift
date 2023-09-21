@@ -10,7 +10,7 @@ import PhotosUI
 
 struct ServiceView: View {
     @StateObject var SM = ServiceMethod()
-    @StateObject var PA = ProgressAmount()
+    @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
     @Environment(\.presentationMode) var presentationMode
 
@@ -18,22 +18,18 @@ struct ServiceView: View {
         VStack {
             customNavBar()
             VStack {
-                if PA.progressAmont <= 30 {
-                    ProgressView(value: PA.progressAmont, total: 30)
+                if PM.progressAmont <= 30 {
+                    ProgressView(value: PM.progressAmont, total: 30)
                         .progressViewStyle(RoundedRectProgressViewStyle())
-                        .animation(.linear, value:
-                        SM.isAnimating)
+                        .animation(.linear, value: PM.isAnimating)
                 }
-                switch PA.progressAmont {
+                switch PM.progressAmont {
                 case 0:
-                    QuesFirst(SM: SM, PA: PA, PP: PP)
-                        .modifier(CAnimating(isSelectedImageAnimating: false))
+                    QuesFirst(SM: SM, PM: PM, PP: PP)
                 case 10:
-                    QuesSecond(SM: SM, PA: PA, PP: PP)
-                        .modifier(CAnimating(isSelectedImageAnimating: false))
+                    QuesSecond(SM: SM, PM: PM, PP: PP)
                 case 20...30:
-                    QuesThird(SM: SM, PA: PA, PP: PP)
-                        .modifier(CAnimating(isSelectedImageAnimating: false))
+                    QuesThird(SM: SM, PM: PM, PP: PP)
                 default:
                     pageLoading()
                 }
@@ -52,10 +48,10 @@ struct ServiceView: View {
                     presentationMode.wrappedValue.dismiss()
                 } label: {
                     Image(systemName: "house")
-                        .foregroundColor(PA.progressAmont == 40 ? .clear : .black)
+                        .foregroundColor(PM.progressAmont == 40 ? .clear : .black)
                         .imageScale(.large)
                         .fontWeight(.semibold)
-                }.disabled(PA.progressAmont == 40 ? true : false)
+                }.disabled(PM.progressAmont == 40 ? true : false)
 
                 Spacer()
 
@@ -98,7 +94,7 @@ struct ServiceView: View {
     }
 
     private func clearAll() {
-        PA.progressAmont = 0.0
+        PM.progressAmont = 0.0
         SM.clearAll()
         PP.clearImageData()
     }
@@ -106,11 +102,6 @@ struct ServiceView: View {
 
 struct ServiceView_Previews: PreviewProvider {
     static var previews: some View {
-//        ServiceView()
-//            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-//            .previewDisplayName("iPhone 8")
         ServiceView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
-            .previewDisplayName("iPhone 14 Pro")
     }
 }

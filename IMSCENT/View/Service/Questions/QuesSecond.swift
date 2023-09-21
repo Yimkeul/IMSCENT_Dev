@@ -9,64 +9,41 @@ import SwiftUI
 
 struct QuesSecond: View {
     @StateObject var SM = ServiceMethod()
-    @StateObject var PA = ProgressAmount()
+    @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
-
+    @State private var isAnimating: Bool = false
     @State var isAgeRange: Int?
 
     var body: some View {
         GeometryReader { geo in
-            VStack {
-                VStack {
-                    SM.Title(title: "나이를 선택해 주세요")
-                        .padding(.bottom, 16)
-                    Spacer()
-                    SM.TitleImage(image: "calendar", width: geo.size.width * 0.4, height: geo.size.width * 0.4)
-                    Spacer()
-                } .frame(width: geo.size.width, height: geo.size.height * 0.5)
-                // MARK: 절반
-                VStack {
-
-                    ageRangeBtn()
-                    Spacer()
-                    ageDetailBtn()
-                    
+            VStack(spacing: 0) {
+                TopArea(width: geo.size.width * 0.4, height: geo.size.height * 0.2)
                 Spacer()
-                HStack {
-                    Button {
-                        Task {
-                            PA.progressAmont = 0
-                            SM.isAnimating.toggle()
-                            SM.clearSelect(0)
-                            SM.clearSelect(1)
-                            isAgeRange = nil
-                            print("2) previous :\(SM.isSelect)")
-                        }
-                    } label: {
-                        SM.previous()
-                    }
-                    Spacer()
-                    Button {
-                        Task {
-                            PA.progressAmont = 20
-                            SM.isAnimating.toggle()
-                            print("2) next :\(SM.isSelect)")
-                        }
-                    } label: {
-                        SM.next(isSelect: SM.isSelect[1])
-                    }.disabled(SM.isSelect[1] == nil)
-                }
+                ageRangeBtn()
+                Spacer()
+                ageDetailBtn()
+                Spacer()
+                BottomArea()
             }
                 .padding()
-                .frame(width: geo.size.width, height: geo.size.height * 0.5)
-        }
-//        .modifier(CAnimating(isSelectedImageAnimating: false))
+                .frame(width: geo.size.width, height: geo.size.height)
+                .modifier(CAnimating(isAnimating: isAnimating))
+        }.onAppear(perform: {
+            isAnimating = true
+        })
     }
-}
-    
+
+    @ViewBuilder
+    private func TopArea(width: Double, height: Double) -> some View {
+        VStack {
+            SM.Title(title: "나이를 선택해 주세요")
+            SM.TitleImage(image: "calendar", width: width, height: height)
+        }
+    }
+
     @ViewBuilder
     private func ageRangeBtn() -> some View {
-        HStack (spacing: 16){
+        HStack (spacing: 16) {
             Button {
                 isAgeRange = 20
             } label: {
@@ -105,10 +82,9 @@ struct QuesSecond: View {
                     unSelectCapsuleBtn(text: "50대")
                 }
             }
-            Spacer()
         }
     }
-    
+
     @ViewBuilder
     private func ageDetailBtn() -> some View {
         switch isAgeRange {
@@ -116,24 +92,25 @@ struct QuesSecond: View {
             Circle()
                 .stroke(.clear, lineWidth: 2)
                 .frame(width: 100)
-                .padding(.vertical, 8)
+                .padding()
         default:
             ageDetailButtons()
         }
     }
 
-     func ageDetailButtons() -> some View {
-         ScrollView(.horizontal , showsIndicators: false) {
+    @ViewBuilder
+    private func ageDetailButtons() -> some View {
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
                 ForEach(0 ..< 10) { index in
                     ageDetailButton(age: isAgeRange! + index)
                 }
             }
-            .padding(.vertical, 8)
         }
-        .modifier(CAnimatingDelay(isSelectedImageAnimating: false, delay: 0))
+        .modifier(CAnimatingDelay(isAnimating: false, delay: 0, duration: 0.5))
     }
 
+    @ViewBuilder
     private func ageDetailButton(age: Int) -> some View {
         Button {
             SM.isSelect[1] = String(age)
@@ -146,73 +123,94 @@ struct QuesSecond: View {
         }
     }
 
-
-
-@ViewBuilder
-private func selectCapsuleBtn (text: String) -> some View {
-    ZStack {
-        Capsule()
-            .stroke(.black, lineWidth: 2)
-            .frame(width: 65, height: 30)
-
-        Text(text)
-            .font(.system(size: 16, weight: .semibold))
-            .foregroundColor(.black)
+    @ViewBuilder
+    private func BottomArea() -> some View {
+        HStack {
+            Button {
+                Task {
+                    PM.progressAmont = 0
+                    PM.isAnimating.toggle()
+                    SM.clearSelect(0)
+                    SM.clearSelect(1)
+                    isAgeRange = nil
+                    print("2) previous :\(SM.isSelect)")
+                }
+            } label: {
+                SM.previous()
+            }
+            Spacer()
+            Button {
+                Task {
+                    PM.progressAmont = 20
+                    PM.isAnimating.toggle()
+                    print("2) next :\(SM.isSelect)")
+                }
+            } label: {
+                SM.next(isSelect: SM.isSelect[1])
+            }.disabled(SM.isSelect[1] == nil)
+        }
     }
-}
 
-@ViewBuilder
-private func unSelectCapsuleBtn (text: String) -> some View {
+    @ViewBuilder
+    private func selectCapsuleBtn (text: String) -> some View {
+        ZStack {
+            Capsule()
+                .stroke(.black, lineWidth: 2)
+                .frame(width: 65, height: 30)
 
-    ZStack {
-        Capsule()
-            .stroke(Color.cGray, lineWidth: 2)
-            .frame(width: 65, height: 30)
-
-
-        Text(text)
-            .font(.system(size: 16, weight: .semibold))
-            .foregroundColor(.gray)
+            Text(text)
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundColor(.black)
+        }
     }
-}
 
-@ViewBuilder
-private func selectCircleBtn (text: String) -> some View {
-    ZStack {
-        Circle()
-            .stroke(.black, lineWidth: 2)
-            .frame(width: 100)
+    @ViewBuilder
+    private func unSelectCapsuleBtn (text: String) -> some View {
 
-        Text("\(text)세")
-            .font(.system(size: 16, weight: .semibold))
-            .foregroundColor(.black)
+        ZStack {
+            Capsule()
+                .stroke(Color.cGray, lineWidth: 2)
+                .frame(width: 65, height: 30)
+
+
+            Text(text)
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundColor(.gray)
+        }
     }
-}
 
-@ViewBuilder
-private func unSelectCircleBtn (text: String) -> some View {
+    @ViewBuilder
+    private func selectCircleBtn (text: String) -> some View {
+        ZStack {
+            Circle()
+                .stroke(.black, lineWidth: 2)
+                .frame(width: 100)
 
-    ZStack {
-        Circle()
-            .stroke(Color.cGray, lineWidth: 2)
-            .frame(width: 100)
-
-        Text("\(text)세")
-            .font(.system(size: 16, weight: .semibold))
-            .foregroundColor(.gray)
+            Text("\(text)세")
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundColor(.black)
+        }.padding()
     }
-}
+
+    @ViewBuilder
+    private func unSelectCircleBtn (text: String) -> some View {
+
+        ZStack {
+            Circle()
+                .stroke(Color.cGray, lineWidth: 2)
+                .frame(width: 100)
+
+            Text("\(text)세")
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundColor(.gray)
+        }.padding()
+    }
 
 
 }
 
 struct QuesSecond_Previews: PreviewProvider {
     static var previews: some View {
-//        QuesSecond()
-//            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-//            .previewDisplayName("iPhone 8")
         QuesSecond()
-//            .previewDevice(PreviewDevice(rawValue: "iPhone 15 Pro"))
-//            .previewDisplayName("iPhone 15 Pro")
     }
 }

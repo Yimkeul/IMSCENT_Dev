@@ -8,38 +8,38 @@
 import SwiftUI
 
 struct HomeView: View {
+    // 온보딩 모달 제어용
     @AppStorage("isFirst") var isFirst: Bool = true
+    // 화면 이동 제어용
     @State private var navService: Bool = false
-    @StateObject var PA = ProgressAmount()
-    
-    
+
+    @StateObject var SM = ServiceMethod()
+    @StateObject var PM = ProgressBarMethod()
+    @StateObject var PP = PhotoPickerViewModel()
+
     var body: some View {
         NavigationStack {
             GeometryReader {
                 geo in
                 VStack {
-                    // MARK: 버튼 그룹
                     ButtonGroup()
                     Spacer()
                     Image("Logo")
                         .resizable()
                         .scaledToFit()
-                    Spacer().frame(height: geo.size.height*0.4)
+                    Spacer().frame(height: geo.size.height * 0.4)
                     ButtonStart().padding(.bottom, 32)
                 }
                     .frame(width: geo.size.width, height: geo.size.height)
-
             }.padding()
-
         }
     }
 
     @ViewBuilder
     private func ButtonStart() -> some View {
         Button {
-            Task{
+            Task {
                 navService.toggle()
-                PA.progressAmont = 0
                 print("시작하기. \(navService.description)")
             }
         } label: {
@@ -56,9 +56,9 @@ struct HomeView: View {
                     .foregroundColor(.white)
             }
         }
-        .navigationDestination(isPresented: $navService) {
-            ServiceView(PA: PA).navigationBarHidden(true)
-            let _ = print(PA.progressAmont)
+            .navigationDestination(isPresented: $navService) {
+            ServiceView()
+                .navigationBarHidden(true)
         }
     }
 
@@ -88,7 +88,7 @@ struct HomeView: View {
                     .fontWeight(.semibold)
             }.sheet(isPresented: $isFirst) {
                 ModalIntroView(isFirst: $isFirst)
-                    .presentationDetents([.fraction(0.8)])
+                    .presentationDetents([.fraction(0.9)])
                     .presentationDragIndicator(.visible)
             }
 
@@ -100,10 +100,5 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-            .previewDisplayName("iPhone 8")
-        HomeView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
-            .previewDisplayName("iPhone 14 Pro")
     }
 }
