@@ -84,10 +84,10 @@ struct CAnimatingDelay: ViewModifier {
             .opacity(isAnimating ? 1 : 0)
             .animation(.easeInOut(duration: duration).delay(delay), value: isAnimating)
             .onAppear {
-                isAnimating.toggle()
+                isAnimating = true
         }
             .onDisappear() {
-                isAnimating.toggle()
+                isAnimating = false
         }
     }
 }

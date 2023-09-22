@@ -55,7 +55,7 @@ struct QuesThird: View {
                         .presentationDragIndicator(.visible)
                 }
             }
-            
+
             PhotosPicker(selection: $PP.imageSelection) {
                 SM.TitleImage(image: "camera", width: width, height: height) }
 
@@ -69,14 +69,20 @@ struct QuesThird: View {
                 .frame(width: width, height: height)
                 .cornerRadius(8)
                 .scaledToFit()
-                .onAppear {
-                PM.progressAmont = 30
-                SM.isSelect[2] = String(describing: image)
-                print("3 appear : \(SM.isSelect)")
-                PM.isAnimating.toggle()
-                }
+                .onAppear (perform: {
+                DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                    Task {
+                        PM.progressAmont = 30
+                        PM.isAnimating.toggle()
+                        SM.isSelect[2] = String(describing: image)
+                        print("3 appear : \(SM.isSelect)")
+                    }
+                })
+            })
         }
     }
+
+
     @ViewBuilder
     private func GoPredictBtn(width: Double, height: Double) -> some View {
         if PP.selectedImage != nil {

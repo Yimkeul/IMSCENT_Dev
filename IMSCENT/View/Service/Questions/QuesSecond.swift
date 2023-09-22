@@ -12,6 +12,7 @@ struct QuesSecond: View {
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
     @State private var isAnimating: Bool = false
+    @State private var isAnimating2: Bool = false
     @State var isAgeRange: Int?
 
     var body: some View {
@@ -21,7 +22,7 @@ struct QuesSecond: View {
                 Spacer()
                 ageRangeBtn()
                 Spacer()
-                ageDetailBtn()
+                ageDetailBtn(width: geo.size.width)
                 Spacer()
                 BottomArea()
             }
@@ -86,28 +87,23 @@ struct QuesSecond: View {
     }
 
     @ViewBuilder
-    private func ageDetailBtn() -> some View {
+    private func ageDetailBtn(width: Double) -> some View {
         switch isAgeRange {
         case .none:
-            Circle()
-                .stroke(.clear, lineWidth: 2)
-                .frame(width: 100)
-                .padding()
+            ScrollView(showsIndicators: false) {
+                EmptyView()
+            }
         default:
-            ageDetailButtons()
-        }
-    }
-
-    @ViewBuilder
-    private func ageDetailButtons() -> some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
+            ScrollView(showsIndicators: false) {
                 ForEach(0 ..< 10) { index in
                     ageDetailButton(age: isAgeRange! + index)
                 }
             }
+                .frame(width: width)
+                .background(Color.cGray2)
+                .cornerRadius(8)
+                .modifier(CAnimatingDelay(isAnimating: isAnimating2, delay: 0, duration: 0.3))
         }
-        .modifier(CAnimatingDelay(isAnimating: false, delay: 0, duration: 0.5))
     }
 
     @ViewBuilder
@@ -116,9 +112,9 @@ struct QuesSecond: View {
             SM.isSelect[1] = String(age)
         } label: {
             if SM.isSelect[1] == String(age) {
-                selectCircleBtn(text: "\(age)")
+                selectDetailBtn(text: "\(age)")
             } else {
-                unSelectCircleBtn(text: "\(age)")
+                unSelectDetailBtn(text: "\(age)")
             }
         }
     }
@@ -180,33 +176,21 @@ struct QuesSecond: View {
     }
 
     @ViewBuilder
-    private func selectCircleBtn (text: String) -> some View {
-        ZStack {
-            Circle()
-                .stroke(.black, lineWidth: 2)
-                .frame(width: 100)
-
-            Text("\(text)세")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundColor(.black)
-        }.padding()
+    private func selectDetailBtn (text: String) -> some View {
+        Text("\(text)세")
+            .font(.system(size: 16, weight: .semibold))
+            .foregroundColor(.black)
+            .padding()
+            .scaleEffect(1.2)
     }
 
     @ViewBuilder
-    private func unSelectCircleBtn (text: String) -> some View {
-
-        ZStack {
-            Circle()
-                .stroke(Color.cGray, lineWidth: 2)
-                .frame(width: 100)
-
-            Text("\(text)세")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundColor(.gray)
-        }.padding()
+    private func unSelectDetailBtn (text: String) -> some View {
+        Text("\(text)세")
+            .font(.system(size: 16, weight: .semibold))
+            .foregroundColor(.gray)
+            .padding()
     }
-
-
 }
 
 struct QuesSecond_Previews: PreviewProvider {
