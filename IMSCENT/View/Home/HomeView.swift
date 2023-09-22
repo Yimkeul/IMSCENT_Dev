@@ -28,7 +28,7 @@ struct HomeView: View {
                         .resizable()
                         .scaledToFit()
                     Spacer().frame(height: geo.size.height * 0.4)
-                    ButtonStart().padding(.bottom, 32)
+                    ButtonStart(width: geo.size.height * 0.5, height: 60).padding(.bottom, 32)
                 }
                     .frame(width: geo.size.width, height: geo.size.height)
             }.padding()
@@ -36,7 +36,7 @@ struct HomeView: View {
     }
 
     @ViewBuilder
-    private func ButtonStart() -> some View {
+    private func ButtonStart(width:Double, height: Double) -> some View {
         Button {
             Task {
                 navService.toggle()
@@ -46,12 +46,12 @@ struct HomeView: View {
             ZStack {
                 Rectangle()
                     .foregroundColor(.clear)
-                    .frame(width: 240, height: 40)
-                    .background(Color(red: 0.13, green: 0.13, blue: 0.13))
+                    .frame(width: width, height: height)
+                    .background(.black)
                     .cornerRadius(8)
 
                 Text("시작하기")
-                    .font(.system(size: 16))
+                    .font(.system(size: 20))
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
             }

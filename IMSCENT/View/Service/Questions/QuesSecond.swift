@@ -22,7 +22,8 @@ struct QuesSecond: View {
                 Spacer()
                 ageRangeBtn()
                 Spacer()
-                ageDetailBtn(width: geo.size.width)
+                ageDetailBtn(width: geo.size.height * 0.5 , height:geo.size.height * 0.4)
+                
                 Spacer()
                 BottomArea()
             }
@@ -87,19 +88,19 @@ struct QuesSecond: View {
     }
 
     @ViewBuilder
-    private func ageDetailBtn(width: Double) -> some View {
+    private func ageDetailBtn(width: Double , height: Double) -> some View {
         switch isAgeRange {
         case .none:
             ScrollView(showsIndicators: false) {
                 EmptyView()
-            }
+            }.frame(width: width, height: height)
         default:
             ScrollView(showsIndicators: false) {
                 ForEach(0 ..< 10) { index in
                     ageDetailButton(age: isAgeRange! + index)
                 }
             }
-                .frame(width: width)
+            .frame(width: width, height: height)
                 .background(Color.cGray2)
                 .cornerRadius(8)
                 .modifier(CAnimatingDelay(isAnimating: isAnimating2, delay: 0, duration: 0.3))
