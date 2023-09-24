@@ -12,6 +12,7 @@ struct HomeView: View {
     @AppStorage("isFirst") var isFirst: Bool = true
     // 화면 이동 제어용
     @State private var navService: Bool = false
+    @State private var navService2: Bool = false
 
     @StateObject var SM = ServiceMethod()
     @StateObject var PM = ProgressBarMethod()
@@ -38,10 +39,7 @@ struct HomeView: View {
     @ViewBuilder
     private func ButtonStart(width:Double, height: Double) -> some View {
         Button {
-            Task {
-                navService.toggle()
-                print("시작하기. \(navService.description)")
-            }
+            navService.toggle()
         } label: {
             ZStack {
                 Rectangle()
@@ -80,16 +78,15 @@ struct HomeView: View {
             }.padding(.trailing, 16)
 
             Button {
-                isFirst.toggle()
+                navService2.toggle()
             } label: {
                 Image(systemName: "heart")
                     .foregroundColor(Color.black)
                     .imageScale(.large)
                     .fontWeight(.semibold)
-            }.sheet(isPresented: $isFirst) {
-                ModalIntroView(isFirst: $isFirst)
-                    .presentationDetents([.fraction(0.9)])
-                    .presentationDragIndicator(.visible)
+            } .navigationDestination(isPresented: $navService2) {
+                LikeView()
+                    .navigationBarHidden(true)
             }
 
         }
