@@ -102,7 +102,7 @@ struct QuesThird: View {
             }
                 .cornerRadius(8)
                 .padding(.vertical, 8)
-                .modifier(CAnimatingDelay(isAnimating: false, delay: 1, duration: 1.1))
+                .modifier(CAnimatingDelay(isAnimating: false, delay: 1, duration: 0.8))
         }
     }
     @ViewBuilder

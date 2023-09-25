@@ -12,7 +12,8 @@ import SwiftUI
 class ServiceMethod: ObservableObject {
 
     @Published var isSelect: [String?] = [nil, nil, nil]
-    @StateObject var PP = PhotoPickerViewModel()
+    @Published var isLoading: Bool = false
+    
 
     func clearSelect(_ index: Int) {
         isSelect[index] = nil
@@ -68,7 +69,7 @@ struct CAnimating: ViewModifier {
         content
             .offset(y: isAnimating ? 0 : 10)
             .opacity(isAnimating ? 1 : 0)
-            .animation(.easeInOut(duration: 0.8).delay(0.5), value: isAnimating)
+            .animation(.easeInOut(duration: 0.5).delay(0.5), value: isAnimating)
     }
 }
 

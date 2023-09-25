@@ -42,6 +42,7 @@ final class PhotoPickerViewModel: ObservableObject {
     }
     
     func clearImageData() {
+        imageSelection = nil
         selectedImage = nil
     }
 }

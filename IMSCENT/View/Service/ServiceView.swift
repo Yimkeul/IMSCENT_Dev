@@ -12,6 +12,9 @@ struct ServiceView: View {
     @StateObject var SM = ServiceMethod()
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
+    @StateObject var TM = TeachableViewModel()
+    
+    
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
@@ -31,10 +34,9 @@ struct ServiceView: View {
                 case 20...30:
                     QuesThird(SM: SM, PM: PM, PP: PP)
                 default:
-                    pageLoading()
+                    LoadingView(SM: SM, PM: PM, PP: PP)
                 }
             }.padding()
-
         }
     }
 
@@ -48,10 +50,10 @@ struct ServiceView: View {
                     presentationMode.wrappedValue.dismiss()
                 } label: {
                     Image(systemName: "house")
-                        .foregroundColor(PM.progressAmont == 40 ? .clear : .black)
+                        .foregroundColor(SM.isLoading ? .clear : .black)
                         .imageScale(.large)
                         .fontWeight(.semibold)
-                }.disabled(PM.progressAmont == 40 ? true : false)
+                }.disabled(SM.isLoading ? true : false)
 
                 Spacer()
 
@@ -76,27 +78,11 @@ struct ServiceView: View {
         }
     }
 
-    @ViewBuilder
-    private func pageLoading() -> some View {
-        VStack {
-            ProgressView()
-
-            Spacer()
-
-            Button {
-                clearAll()
-            } label: {
-                Text("초기화")
-            }
-
-            Text("로딩")
-        }
-    }
-
     private func clearAll() {
         PM.progressAmont = 0.0
         SM.clearAll()
         PP.clearImageData()
+        TM.clearTMData()
     }
 }
 
