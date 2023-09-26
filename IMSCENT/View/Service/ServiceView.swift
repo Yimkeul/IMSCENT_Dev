@@ -25,57 +25,65 @@ struct ServiceView: View {
                     ProgressView(value: PM.progressAmont, total: 30)
                         .progressViewStyle(RoundedRectProgressViewStyle())
                         .animation(.linear, value: PM.isAnimating)
+                        .padding()
                 }
                 switch PM.progressAmont {
                 case 0:
                     QuesFirst(SM: SM, PM: PM, PP: PP)
+                        .padding()
                 case 10:
                     QuesSecond(SM: SM, PM: PM, PP: PP)
+                        .padding()
                 case 20...30:
                     QuesThird(SM: SM, PM: PM, PP: PP)
+                        .padding()
                 default:
                     LoadingView(SM: SM, PM: PM, PP: PP)
                 }
-            }.padding()
+            }
         }
     }
 
 
     @ViewBuilder
     private func customNavBar() -> some View {
-        VStack {
-            HStack {
-                Button {
-                    clearAll()
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    Image(systemName: "house")
-                        .foregroundColor(SM.isLoading ? .clear : .black)
-                        .imageScale(.large)
-                        .fontWeight(.semibold)
-                }.disabled(SM.isLoading ? true : false)
+        if SM.isLoading != true {
+            VStack {
+                HStack {
+                    Button {
+                        clearAll()
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "house")
+                            .foregroundColor(.black)
+                            .imageScale(.large)
+                            .fontWeight(.semibold)
+                    }
+//                    .disabled(false)
 
-                Spacer()
+                    Spacer()
 
-                Image("Logo")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 122, height: 48)
-                    .clipShape(Rectangle())
+                    Image("Logo")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 122, height: 48)
+                        .clipShape(Rectangle())
 
-                Spacer()
+                    Spacer()
 
-                Button {
-                    print("None")
-                } label: {
-                    Image(systemName: "house")
-                        .foregroundColor(.clear)
-                        .font(.system(.title, weight: .bold))
-                }.disabled(true)
-            }.padding(.horizontal, 16)
+                    Button {
+                        print("None")
+                    } label: {
+                        Image(systemName: "house")
+                            .foregroundColor(.clear)
+                            .font(.system(.title, weight: .bold))
+                    }.disabled(true)
+                }.padding(.horizontal, 16)
 
-            Divider()
+                Divider()
+            }
         }
+        
     }
 
     private func clearAll() {

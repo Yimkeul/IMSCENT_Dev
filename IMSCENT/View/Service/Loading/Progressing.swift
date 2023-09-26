@@ -11,8 +11,9 @@ struct Progressing: View {
     @State private var isAnimating: Bool = false
     var body: some View {
             VStack {
+                Spacer()
                 ZStack {
-                    Color.black.opacity(0.05)
+                    Color.white
                         .edgesIgnoringSafeArea(.all)
                     Image("L1")
                         .resizable()
@@ -41,8 +42,18 @@ struct Progressing: View {
                             .offset(x: isAnimating ? 0 : -550)
                         }.animation(.easeIn(duration: 3).repeatForever(autoreverses: false), value: isAnimating)
                 } .onAppear {
-                    isAnimating.toggle()
+                    isAnimating = true
                 }
+                Spacer()
+                Text("✨ 향수 검색 중 ✨")
+                    .font(.system(size: 16 , weight: .bold))
+                    .offset(y : isAnimating ? -10 : 0)
+                    .animation(
+                        .easeIn(duration: 1)
+                        .repeatForever(autoreverses: true)
+                        , value: isAnimating
+                    )
+                    .padding(.bottom,16)
             }
     }
 }
