@@ -97,7 +97,7 @@ struct QuesSecond: View {
         default:
             ScrollView(showsIndicators: false) {
                 ForEach(0 ..< 10) { index in
-                    ageDetailButton(age: isAgeRange! + index)
+                    ageDetailButton(age: isAgeRange! + index , width : width)
                 }
             }
             .frame(width: width, height: height)
@@ -108,7 +108,7 @@ struct QuesSecond: View {
     }
 
     @ViewBuilder
-    private func ageDetailButton(age: Int) -> some View {
+    private func ageDetailButton(age: Int, width : Double) -> some View {
         Button {
             SM.isSelect[1] = String(age)
         } label: {
@@ -117,7 +117,7 @@ struct QuesSecond: View {
             } else {
                 unSelectDetailBtn(text: "\(age)")
             }
-        }
+        }.frame(width:width)
     }
 
     @ViewBuilder
