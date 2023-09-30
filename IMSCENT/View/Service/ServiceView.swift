@@ -13,33 +13,28 @@ struct ServiceView: View {
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
     @StateObject var TM = TeachableViewModel()
-    
-    
+
+
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         VStack {
             customNavBar()
-            VStack {
-                if PM.progressAmont <= 30 {
-                    ProgressView(value: PM.progressAmont, total: 30)
-                        .progressViewStyle(RoundedRectProgressViewStyle())
-                        .animation(.linear, value: PM.isAnimating)
-                        .padding()
-                }
-                switch PM.progressAmont {
-                case 0:
-                    QuesFirst(SM: SM, PM: PM, PP: PP)
-                        .padding()
-                case 10:
-                    QuesSecond(SM: SM, PM: PM, PP: PP)
-                        .padding()
-                case 20...30:
-                    QuesThird(SM: SM, PM: PM, PP: PP)
-                        .padding()
-                default:
-                    LoadingView(SM: SM, PM: PM, PP: PP)
-                }
+            if PM.progressAmont <= 30 {
+                ProgressView(value: PM.progressAmont, total: 30)
+                    .progressViewStyle(RoundedRectProgressViewStyle())
+                    .animation(.linear, value: PM.isAnimating)
+                    .padding()
+            }
+            switch PM.progressAmont {
+            case 0:
+                QuesFirst(SM: SM, PM: PM, PP: PP)
+            case 10:
+                QuesSecond(SM: SM, PM: PM, PP: PP)
+            case 20...30:
+                QuesThird(SM: SM, PM: PM, PP: PP)
+            default:
+                LoadingView(SM: SM, PM: PM, PP: PP)
             }
         }
     }
@@ -83,7 +78,7 @@ struct ServiceView: View {
                 Divider()
             }
         }
-        
+
     }
 
     private func clearAll() {

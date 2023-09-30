@@ -12,4 +12,5 @@ extension Color {
     static let cGray = Color("transgray")
     static let cGray2 = Color("transgray2")
     static let cWG = Color("whitegray")
+    static let cPGray = Color("PGbar")
 }

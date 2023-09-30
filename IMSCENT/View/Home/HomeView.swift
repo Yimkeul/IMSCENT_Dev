@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+
 struct HomeView: View {
     // 온보딩 모달 제어용
     @AppStorage("isFirst") var isFirst: Bool = true
@@ -17,42 +19,64 @@ struct HomeView: View {
     @StateObject var SM = ServiceMethod()
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
+    let UW = UIScreen.main.bounds.width
+    let UH = UIScreen.main.bounds.height
 
     var body: some View {
+
         NavigationStack {
-            GeometryReader {
-                geo in
-                VStack {
-                    ButtonGroup()
-                    Spacer()
-                    Image("Logo")
+            GeometryReader { geo in
+                let size = geo.size
+                ZStack {
+                    Image("HomeBG")
                         .resizable()
-                        .scaledToFit()
-                    Spacer().frame(height: geo.size.height * 0.4)
-                    ButtonStart(width: geo.size.height * 0.5, height: 60).padding(.bottom, 32)
+                        .scaledToFill()
+                        .edgesIgnoringSafeArea(.all)
+                        .frame(width: UW, height: UH)
+                    VStack {
+                        ButtonGroup()
+                            VStack (spacing : 0){
+                                Image("Logo")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 200, height:150)
+                                    .clipShape(Rectangle())
+                                    .foregroundColor(.white)
+                                Text("패션에 향을 더하다")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundColor(.white)
+                                    .offset(y : -30)
+                                Spacer()
+                            }
+                        Spacer()
+                        ButtonStart(width: size.width, height: 60).padding(.bottom, 32)
+                    }
+                    .frame(width: size.width, height: size.height)
                 }
-                    .frame(width: geo.size.width, height: geo.size.height)
+                .frame(width: size.width, height: size.height)
             }.padding()
         }
     }
 
+
     @ViewBuilder
-    private func ButtonStart(width:Double, height: Double) -> some View {
+    private func ButtonStart(width: Double, height: Double) -> some View {
         Button {
             navService.toggle()
         } label: {
-            ZStack {
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: width, height: height)
-                    .background(.black)
-                    .cornerRadius(8)
-
-                Text("시작하기")
-                    .font(.system(size: 20))
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-            }
+//            ZStack {
+//                Rectangle()
+//                    .foregroundColor(.clear)
+//                    .frame(width: width, height: height)
+//                    .background(.black)
+//                    .cornerRadius(8)
+//
+            Text("향수 추천받기")
+                .font(.system(size: 24))
+                .fontWeight(.semibold)
+                .foregroundColor(.white)
+//            }
         }
             .navigationDestination(isPresented: $navService) {
             ServiceView()
@@ -94,8 +118,6 @@ struct HomeView: View {
 
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
+#Preview {
+    HomeView()
 }

@@ -52,11 +52,11 @@ class ServiceMethod: ObservableObject {
     }
 
     @ViewBuilder
-    func TitleImage(image: String, width: Double, height: Double) -> some View {
+    func TitleImage(image: String, height: Double) -> some View {
         Image(image)
             .resizable()
             .scaledToFit()
-            .frame(width: width, height: height)
+            .frame(height: height)
     }
 }
 

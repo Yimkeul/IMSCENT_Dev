@@ -17,29 +17,29 @@ struct QuesSecond: View {
 
     var body: some View {
         GeometryReader { geo in
-            VStack(spacing: 0) {
-                TopArea(width: geo.size.width * 0.4, height: geo.size.height * 0.2)
+            let size = geo.size
+            VStack {
+                TopArea(height: size.height * 0.2)
                 Spacer()
                 ageRangeBtn()
                 Spacer()
-                ageDetailBtn(width: geo.size.height * 0.5 , height:geo.size.height * 0.4)
-                
+                ageDetailBtn(width: size.width, height: size.height * 0.4)
+
                 Spacer()
                 BottomArea()
             }
-                .padding()
-                .frame(width: geo.size.width, height: geo.size.height)
+                .frame(width: size.width, height: size.height)
                 .modifier(CAnimating(isAnimating: isAnimating))
-        }.onAppear(perform: {
+        }.onAppear {
             isAnimating = true
-        })
+        }
     }
 
     @ViewBuilder
-    private func TopArea(width: Double, height: Double) -> some View {
-        VStack {
+    private func TopArea(height: Double) -> some View {
+        VStack(spacing: 0) {
             SM.Title(title: "나이를 선택해 주세요")
-            SM.TitleImage(image: "calendar", width: width, height: height)
+            SM.TitleImage(image: "calendar", height: height)
         }
     }
 
@@ -88,7 +88,7 @@ struct QuesSecond: View {
     }
 
     @ViewBuilder
-    private func ageDetailBtn(width: Double , height: Double) -> some View {
+    private func ageDetailBtn(width: Double, height: Double) -> some View {
         switch isAgeRange {
         case .none:
             ScrollView(showsIndicators: false) {
@@ -97,10 +97,10 @@ struct QuesSecond: View {
         default:
             ScrollView(showsIndicators: false) {
                 ForEach(0 ..< 10) { index in
-                    ageDetailButton(age: isAgeRange! + index , width : width)
+                    ageDetailButton(age: isAgeRange! + index, width: width)
                 }
             }
-            .frame(width: width, height: height)
+                .frame(width: width, height: height)
                 .background(Color.cGray2)
                 .cornerRadius(8)
                 .modifier(CAnimatingDelay(isAnimating: isAnimating2, delay: 0, duration: 0.3))
@@ -108,7 +108,7 @@ struct QuesSecond: View {
     }
 
     @ViewBuilder
-    private func ageDetailButton(age: Int, width : Double) -> some View {
+    private func ageDetailButton(age: Int, width: Double) -> some View {
         Button {
             SM.isSelect[1] = String(age)
         } label: {
@@ -117,7 +117,7 @@ struct QuesSecond: View {
             } else {
                 unSelectDetailBtn(text: "\(age)")
             }
-        }.frame(width:width)
+        }.frame(width: width)
     }
 
     @ViewBuilder
@@ -145,7 +145,7 @@ struct QuesSecond: View {
             } label: {
                 SM.next(isSelect: SM.isSelect[1])
             }.disabled(SM.isSelect[1] == nil)
-        }
+        }.padding()
     }
 
     @ViewBuilder

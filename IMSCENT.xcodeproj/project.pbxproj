@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		86377A332AB5956C00DA49A3 /* ModalIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86377A322AB5956C00DA49A3 /* ModalIntroView.swift */; };
 		866F774E2AC2A35E0081C27B /* Progressing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866F774D2AC2A35E0081C27B /* Progressing.swift */; };
+		868598A22AC58B9A0021CF9B /* Perfume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868598A12AC58B9A0021CF9B /* Perfume.swift */; };
 		868F9BAE2ABE69C900C419C4 /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868F9BAD2ABE69C900C419C4 /* LikeView.swift */; };
 		8694DDBD2AB984D300636CA1 /* QuesFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8694DDBC2AB984D300636CA1 /* QuesFirst.swift */; };
 		8694DDBF2AB9853D00636CA1 /* QuesSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8694DDBE2AB9853D00636CA1 /* QuesSecond.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		86377A322AB5956C00DA49A3 /* ModalIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalIntroView.swift; sourceTree = "<group>"; };
 		866F774D2AC2A35E0081C27B /* Progressing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progressing.swift; sourceTree = "<group>"; };
+		868598A12AC58B9A0021CF9B /* Perfume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Perfume.swift; sourceTree = "<group>"; };
 		868F9BAD2ABE69C900C419C4 /* LikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
 		8694DDBC2AB984D300636CA1 /* QuesFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuesFirst.swift; sourceTree = "<group>"; };
 		8694DDBE2AB9853D00636CA1 /* QuesSecond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuesSecond.swift; sourceTree = "<group>"; };
@@ -81,6 +83,22 @@
 				866F774D2AC2A35E0081C27B /* Progressing.swift */,
 			);
 			path = Loading;
+			sourceTree = "<group>";
+		};
+		8685989E2AC58B630021CF9B /* RecomandView */ = {
+			isa = PBXGroup;
+			children = (
+				868598A02AC58B800021CF9B /* PerfumeModel */,
+			);
+			path = RecomandView;
+			sourceTree = "<group>";
+		};
+		868598A02AC58B800021CF9B /* PerfumeModel */ = {
+			isa = PBXGroup;
+			children = (
+				868598A12AC58B9A0021CF9B /* Perfume.swift */,
+			);
+			path = PerfumeModel;
 			sourceTree = "<group>";
 		};
 		868F9BAC2ABE689E00C419C4 /* Like */ = {
@@ -178,6 +196,7 @@
 		86C8871C2AB6CB0500783D89 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8685989E2AC58B630021CF9B /* RecomandView */,
 				86B6BB732AB58DB4006344EB /* HomeView.swift */,
 				86377A322AB5956C00DA49A3 /* ModalIntroView.swift */,
 			);
@@ -303,6 +322,7 @@
 				868F9BAE2ABE69C900C419C4 /* LikeView.swift in Sources */,
 				86CBF80E2AC2066C00366A10 /* TeachableMachineViewModel.swift in Sources */,
 				86C8871F2AB6CE2D00783D89 /* ServiceView.swift in Sources */,
+				868598A22AC58B9A0021CF9B /* Perfume.swift in Sources */,
 				869F24EC2AB91CA700DF9CAA /* PhotoPickerViewModel.swift in Sources */,
 				86CBF8102AC2067F00366A10 /* Response.swift in Sources */,
 				86377A332AB5956C00DA49A3 /* ModalIntroView.swift in Sources */,
@@ -369,7 +389,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -424,7 +444,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

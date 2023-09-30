@@ -21,16 +21,21 @@ struct QuesThird: View {
 
     var body: some View {
         GeometryReader { geo in
-            VStack(spacing: 0) {
-                TopArea(width: geo.size.width * 0.4, height: geo.size.height * 0.2)
-                PickImage(width: geo.size.height * 0.5, height: geo.size.height * 0.5)
-                Spacer()
-                GoPredictBtn(width: geo.size.height * 0.5, height: 60)
+            let size = geo.size
+            VStack {
+                TopArea(height: size.height * 0.2)
+                GeometryReader {
+                    geo in
+                    let inner = geo.size
+                    VStack(spacing: 0) {
+                        PickImage(width: size.width, height: inner.height * 0.85)
+                        GoPredictBtn(width: size.width, height:inner.height * 0.15)
+                    }.frame(height: inner.height)
+                }
                 Spacer()
                 BottomArea()
             }
-                .padding()
-                .frame(width: geo.size.width, height: geo.size.height)
+                .frame(width: size.width, height: size.height)
                 .modifier(CAnimating(isAnimating: isAnimating))
         }.onAppear(perform: {
             isAnimating = true
@@ -38,7 +43,7 @@ struct QuesThird: View {
     }
 
     @ViewBuilder
-    private func TopArea(width: Double, height: Double) -> some View {
+    private func TopArea(height: Double) -> some View {
         VStack {
             HStack(alignment: .center, spacing: 4) {
                 SM.Title(title: "사진을 선택해 주세요")
@@ -57,7 +62,7 @@ struct QuesThird: View {
             }
 
             PhotosPicker(selection: $PP.imageSelection) {
-                SM.TitleImage(image: "camera", width: width, height: height) }
+                SM.TitleImage(image: "camera", height: height) }
 
         }
     }
@@ -67,8 +72,7 @@ struct QuesThird: View {
             Image(uiImage: image)
                 .resizable()
                 .frame(width: width, height: height)
-                .cornerRadius(8)
-                .scaledToFit()
+            .scaledToFit()
                 .onAppear (perform: {
                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     Task {
@@ -100,8 +104,6 @@ struct QuesThird: View {
                         .foregroundColor(.white)
                 }
             }
-                .cornerRadius(8)
-                .padding(.vertical, 8)
                 .modifier(CAnimatingDelay(isAnimating: false, delay: 1, duration: 0.8))
         }
     }
@@ -120,7 +122,7 @@ struct QuesThird: View {
             }
 
             Spacer()
-        }
+        }.padding()
     }
 
 }

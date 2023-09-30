@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ModalQuesDescriptionView: View {
     @Binding var isDesc: Bool
+    let Uwidth = UIScreen.main.bounds.width
     var body: some View {
         VStack {
             Spacer()
@@ -23,7 +24,7 @@ struct ModalQuesDescriptionView: View {
                 ZStack {
                     Rectangle()
                         .foregroundColor(.clear)
-                        .frame(width: 240, height: 40)
+                        .frame(width: Uwidth * 0.6, height: 40)
                         .background(.black)
                         .cornerRadius(8)
 

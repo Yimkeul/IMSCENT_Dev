@@ -108,3 +108,34 @@ struct LikeView_Previews: PreviewProvider {
     }
 }
 
+
+
+//                GeometryReader {
+//                    geo in
+//                    let size = geo.size
+////                    Color.green
+//                    ScrollView(.horizontal) {
+//                        HStack {
+//                            ForEach(perfumes) { perfume in
+//                                GeometryReader(content: { proxy in
+//                                    let perfumeSize = proxy.size
+//                                    Image(perfume.perfumeImage)
+//                                        .resizable()
+//                                        .scaledToFill()
+//                                        .frame(width: perfumeSize.width, height: perfumeSize.height)
+//                                        .clipShape(.rect(cornerRadius: 15))
+//                                })
+//                                .frame(width: size.width - 60 , height : size.height)
+//                                    .scrollTransition(.interactive
+//                                                      , axis: .horizontal) {
+//                                    view, phase in
+//                                    view.scaleEffect(phase.isIdentity ? 1 : 0.95)
+//                                }
+//                            }
+//                        }
+//                            .padding(.horizontal, 30)
+//                            .scrollTargetLayout()
+//                    }
+//                        .scrollTargetBehavior(.viewAligned)
+//                        .scrollIndicators(.hidden)
+//                }.frame(height : Uheight * 0.5)

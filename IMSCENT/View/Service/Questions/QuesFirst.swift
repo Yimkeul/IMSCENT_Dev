@@ -14,30 +14,32 @@ struct QuesFirst: View {
     @State private var isAnimating: Bool = false
 
     var body: some View {
+
         GeometryReader { geo in
-            VStack(spacing: 0) {
-                TopArea(width: geo.size.width * 0.4, height: geo.size.height * 0.2)
+            let size = geo.size
+            VStack {
+                TopArea(height: size.height * 0.2)
                 Spacer()
                 SelectBox()
                 Spacer()
                 BottomArea()
             }
-                .padding()
-                .frame(width: geo.size.width, height: geo.size.height)
+                .frame(width: size.width, height: size.height)
                 .modifier(CAnimating(isAnimating: isAnimating))
-        }.onAppear(perform: {
-            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                isAnimating = true
-            })
+                .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                    isAnimating = true
+                })
+            }
+        }
 
-        })
     }
 
     @ViewBuilder
-    private func TopArea(width: Double, height: Double) -> some View {
-        VStack {
+    private func TopArea(height: Double) -> some View {
+        VStack(spacing: 0) {
             SM.Title(title: "성별을 선택해 주세요")
-            SM.TitleImage(image: "bubbles", width: width, height: height)
+            SM.TitleImage(image: "hands", height: height)
         }
     }
     @ViewBuilder
@@ -79,7 +81,7 @@ struct QuesFirst: View {
             } label: {
                 SM.next(isSelect: SM.isSelect[0])
             }.disabled(SM.isSelect[0] == nil)
-        }
+        }.padding()
     }
     @ViewBuilder
     private func selectRRBtn (text: String) -> some View {

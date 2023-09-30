@@ -19,7 +19,7 @@ struct RoundedRectProgressViewStyle: ProgressViewStyle {
         GeometryReader {
             geo in
             RoundedRectangle(cornerRadius: 14)
-                .fill(Color.cWG)
+                .fill(Color.cGray)
                 .frame(width: geo.size.width, height: 14)
 
             RoundedRectangle(cornerRadius: 14)

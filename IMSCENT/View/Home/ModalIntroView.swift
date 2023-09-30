@@ -29,6 +29,7 @@ struct ModalIntroView: View {
     @State private var isAnimation: Bool = false
     @State private var currentPage = 0
     let numberOfPages = 3
+    let Uwidth = UIScreen.main.bounds.width
 
     var body: some View {
 
@@ -73,8 +74,8 @@ struct ModalIntroView: View {
                 ZStack {
                     Rectangle()
                         .foregroundColor(.clear)
-                        .frame(width: 240, height: 40)
-                        .background(Color(red: 0.13, green: 0.13, blue: 0.13))
+                        .frame(width: Uwidth * 0.6, height: 40)
+                        .background(.black)
                         .cornerRadius(8)
 
                     Text(currentPage < 2 ? "다음" : "완료")
