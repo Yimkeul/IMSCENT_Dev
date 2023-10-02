@@ -11,6 +11,7 @@ import Combine
 
 enum TeachableService {
     case getAll(imageData: Data)
+    case getRecommand(sex: String, age: String, style: String)
 }
 
 extension TeachableService: TargetType {
@@ -22,6 +23,8 @@ extension TeachableService: TargetType {
         switch self {
         case .getAll:
             return "/uploadImage"
+        case .getRecommand:
+            return "/recommand"
         }
 
     }
@@ -30,6 +33,8 @@ extension TeachableService: TargetType {
         switch self {
         case .getAll:
             return .post
+        case .getRecommand:
+            return .get
         }
 
     }
@@ -38,6 +43,13 @@ extension TeachableService: TargetType {
         switch self {
         case .getAll(let imageData):
             return .uploadMultipart([MultipartFormData(provider: .data(imageData), name: "image", fileName: "image.jpeg", mimeType: "image/jpeg")])
+        case .getRecommand(let sex, let age, let style):
+            let parameters: [String: Any] = [
+                "sex": sex,
+                "age": age,
+                "style": style
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }
 
     }
@@ -46,6 +58,8 @@ extension TeachableService: TargetType {
         switch self {
         case .getAll:
             return ["Content-type": "multipart/form-data"]
+        case .getRecommand:
+            return ["Content-Type": "application/json"]
         }
 
     }

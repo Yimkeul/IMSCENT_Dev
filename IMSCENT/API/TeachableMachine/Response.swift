@@ -11,8 +11,21 @@ struct TeachableModel: Codable {
     let classProbabilities: [[Double]]
     let topClassIndex: Int
     let resultMessage: String
+ 
 }
 
-struct ImageURLModel: Codable {
-    let imageURL: String
+struct RecommandModel: Codable {
+    let resultFilter: resultFilterValue
+    
+}
+
+struct resultFilterValue: Codable {
+    let idx: Int
+    let title: String
+    let explain : String
+    let sex: String
+    let age: Int
+    let style: String
+    let imglink: String
+    let link: String
 }

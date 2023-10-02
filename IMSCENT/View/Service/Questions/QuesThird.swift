@@ -28,12 +28,12 @@ struct QuesThird: View {
                     geo in
                     let inner = geo.size
                     VStack(spacing: 0) {
-                        PickImage(width: size.width, height: inner.height * 0.85)
-                        GoPredictBtn(width: size.width, height:inner.height * 0.15)
+                        PickImage(width: size.width, height: inner.height)
+//                        GoPredictBtn(width: size.width, height: inner.height * 0.15)
                     }.frame(height: inner.height)
                 }
                 Spacer()
-                BottomArea()
+                BottomArea(width: size.width * 0.7 , height : 50)
             }
                 .frame(width: size.width, height: size.height)
                 .modifier(CAnimating(isAnimating: isAnimating))
@@ -72,7 +72,7 @@ struct QuesThird: View {
             Image(uiImage: image)
                 .resizable()
                 .frame(width: width, height: height)
-            .scaledToFit()
+                .scaledToFit()
                 .onAppear (perform: {
                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     Task {
@@ -90,25 +90,27 @@ struct QuesThird: View {
     @ViewBuilder
     private func GoPredictBtn(width: Double, height: Double) -> some View {
         if PP.selectedImage != nil {
-            Button {
-                PM.progressAmont = 40
+            NavigationLink {
+                LoadingView(SM: SM, PM: PM, PP: PP)
+                    .navigationBarHidden(true)
             } label: {
                 ZStack {
                     Rectangle()
                         .foregroundColor(.clear)
                         .frame(width: width, height: height)
                         .background(.black)
+                        .cornerRadius(8)
                     Text("향수 추천받기 👀")
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                 }
             }
-                .modifier(CAnimatingDelay(isAnimating: false, delay: 1, duration: 0.8))
+                .modifier(CAnimatingDelay(isAnimating: false, delay: 0.8, duration: 0.3))
         }
     }
     @ViewBuilder
-    private func BottomArea() -> some View {
+    private func BottomArea(width: Double, height: Double) -> some View {
         HStack {
             Button {
                 PM.progressAmont = 10
@@ -122,6 +124,7 @@ struct QuesThird: View {
             }
 
             Spacer()
+            GoPredictBtn(width: width, height: height)
         }.padding()
     }
 

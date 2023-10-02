@@ -11,7 +11,6 @@ import Combine
 
 class TeachableViewModel: ObservableObject {
     @Published var getAll: TeachableModel? // 분석 결과
-    @Published var getImageURL: ImageURLModel? //이미지 url
     
     private let provider = MoyaProvider<TeachableService>()
     
@@ -39,7 +38,6 @@ class TeachableViewModel: ObservableObject {
     
     func clearTMData() {
         getAll = nil
-        getImageURL = nil
     }
 }
 

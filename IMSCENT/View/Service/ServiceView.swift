@@ -34,7 +34,8 @@ struct ServiceView: View {
             case 20...30:
                 QuesThird(SM: SM, PM: PM, PP: PP)
             default:
-                LoadingView(SM: SM, PM: PM, PP: PP)
+                EmptyView()
+//                LoadingView(SM: SM, PM: PM, PP: PP)
             }
         }
     }
@@ -71,7 +72,8 @@ struct ServiceView: View {
                     } label: {
                         Image(systemName: "house")
                             .foregroundColor(.clear)
-                            .font(.system(.title, weight: .bold))
+                            .imageScale(.large)
+                            .fontWeight(.semibold)
                     }.disabled(true)
                 }.padding(.horizontal, 16)
 

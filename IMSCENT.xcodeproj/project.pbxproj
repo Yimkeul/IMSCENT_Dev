@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		86377A332AB5956C00DA49A3 /* ModalIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86377A322AB5956C00DA49A3 /* ModalIntroView.swift */; };
+		863D31632AC9746D009922A6 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 863D31622AC9746D009922A6 /* Nuke */; };
+		863D31652AC9746D009922A6 /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 863D31642AC9746D009922A6 /* NukeExtensions */; };
+		863D31672AC9746D009922A6 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 863D31662AC9746D009922A6 /* NukeUI */; };
+		863D31692AC9746D009922A6 /* NukeVideo in Frameworks */ = {isa = PBXBuildFile; productRef = 863D31682AC9746D009922A6 /* NukeVideo */; };
+		863D316B2AC974F7009922A6 /* FBTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863D316A2AC974F7009922A6 /* FBTest.swift */; };
+		863D316F2AC9CCBA009922A6 /* RecommandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863D316E2AC9CCBA009922A6 /* RecommandViewModel.swift */; };
+		863D31712ACAF6B1009922A6 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863D31702ACAF6B1009922A6 /* ResultView.swift */; };
 		866F774E2AC2A35E0081C27B /* Progressing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866F774D2AC2A35E0081C27B /* Progressing.swift */; };
 		868598A22AC58B9A0021CF9B /* Perfume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868598A12AC58B9A0021CF9B /* Perfume.swift */; };
 		868F9BAE2ABE69C900C419C4 /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868F9BAD2ABE69C900C419C4 /* LikeView.swift */; };
@@ -37,6 +44,9 @@
 
 /* Begin PBXFileReference section */
 		86377A322AB5956C00DA49A3 /* ModalIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalIntroView.swift; sourceTree = "<group>"; };
+		863D316A2AC974F7009922A6 /* FBTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBTest.swift; sourceTree = "<group>"; };
+		863D316E2AC9CCBA009922A6 /* RecommandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandViewModel.swift; sourceTree = "<group>"; };
+		863D31702ACAF6B1009922A6 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		866F774D2AC2A35E0081C27B /* Progressing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progressing.swift; sourceTree = "<group>"; };
 		868598A12AC58B9A0021CF9B /* Perfume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Perfume.swift; sourceTree = "<group>"; };
 		868F9BAD2ABE69C900C419C4 /* LikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
@@ -66,7 +76,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				86CBF8092AC205C600366A10 /* RxMoya in Frameworks */,
+				863D31672AC9746D009922A6 /* NukeUI in Frameworks */,
 				86CBF8032AC205C600366A10 /* CombineMoya in Frameworks */,
+				863D31632AC9746D009922A6 /* Nuke in Frameworks */,
+				863D31692AC9746D009922A6 /* NukeVideo in Frameworks */,
+				863D31652AC9746D009922A6 /* NukeExtensions in Frameworks */,
 				86CBF8072AC205C600366A10 /* ReactiveMoya in Frameworks */,
 				86AF4ADB2AC08FD30012BF75 /* ScalingHeaderScrollView in Frameworks */,
 				86CBF8052AC205C600366A10 /* Moya in Frameworks */,
@@ -76,11 +90,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		863D315B2AC97013009922A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		866F774F2AC312B00081C27B /* Loading */ = {
 			isa = PBXGroup;
 			children = (
 				86CBF8112AC20F6500366A10 /* LoadingView.swift */,
 				866F774D2AC2A35E0081C27B /* Progressing.swift */,
+				863D31702ACAF6B1009922A6 /* ResultView.swift */,
 			);
 			path = Loading;
 			sourceTree = "<group>";
@@ -125,6 +147,7 @@
 			children = (
 				869F24EB2AB91CA700DF9CAA /* PhotoPickerViewModel.swift */,
 				86CBF80D2AC2066C00366A10 /* TeachableMachineViewModel.swift */,
+				863D316E2AC9CCBA009922A6 /* RecommandViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -134,6 +157,7 @@
 			children = (
 				86B6BB702AB58DB4006344EB /* IMSCENT */,
 				86B6BB6F2AB58DB4006344EB /* Products */,
+				863D315B2AC97013009922A6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,6 +179,7 @@
 				86B6BB712AB58DB4006344EB /* IMSCENTApp.swift */,
 				86B6BB752AB58DB5006344EB /* Assets.xcassets */,
 				86B6BB772AB58DB5006344EB /* Preview Content */,
+				863D316A2AC974F7009922A6 /* FBTest.swift */,
 			);
 			path = IMSCENT;
 			sourceTree = "<group>";
@@ -254,6 +279,10 @@
 				86CBF8042AC205C600366A10 /* Moya */,
 				86CBF8062AC205C600366A10 /* ReactiveMoya */,
 				86CBF8082AC205C600366A10 /* RxMoya */,
+				863D31622AC9746D009922A6 /* Nuke */,
+				863D31642AC9746D009922A6 /* NukeExtensions */,
+				863D31662AC9746D009922A6 /* NukeUI */,
+				863D31682AC9746D009922A6 /* NukeVideo */,
 			);
 			productName = IMSCENT;
 			productReference = 86B6BB6E2AB58DB4006344EB /* IMSCENT.app */;
@@ -286,6 +315,7 @@
 			packageReferences = (
 				86AF4AD92AC08FD30012BF75 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */,
 				86CBF8012AC205C600366A10 /* XCRemoteSwiftPackageReference "Moya" */,
+				863D31612AC9746D009922A6 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = 86B6BB6F2AB58DB4006344EB /* Products */;
 			projectDirPath = "";
@@ -325,6 +355,9 @@
 				868598A22AC58B9A0021CF9B /* Perfume.swift in Sources */,
 				869F24EC2AB91CA700DF9CAA /* PhotoPickerViewModel.swift in Sources */,
 				86CBF8102AC2067F00366A10 /* Response.swift in Sources */,
+				863D316B2AC974F7009922A6 /* FBTest.swift in Sources */,
+				863D31712ACAF6B1009922A6 /* ResultView.swift in Sources */,
+				863D316F2AC9CCBA009922A6 /* RecommandViewModel.swift in Sources */,
 				86377A332AB5956C00DA49A3 /* ModalIntroView.swift in Sources */,
 				86B6BB742AB58DB4006344EB /* HomeView.swift in Sources */,
 				8694DDC12AB9856700636CA1 /* QuesThird.swift in Sources */,
@@ -538,6 +571,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		863D31612AC9746D009922A6 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.1.6;
+			};
+		};
 		86AF4AD92AC08FD30012BF75 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/exyte/ScalingHeaderScrollView.git";
@@ -557,6 +598,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		863D31622AC9746D009922A6 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 863D31612AC9746D009922A6 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		863D31642AC9746D009922A6 /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 863D31612AC9746D009922A6 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
+		};
+		863D31662AC9746D009922A6 /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 863D31612AC9746D009922A6 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
+		};
+		863D31682AC9746D009922A6 /* NukeVideo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 863D31612AC9746D009922A6 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeVideo;
+		};
 		86AF4ADA2AC08FD30012BF75 /* ScalingHeaderScrollView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 86AF4AD92AC08FD30012BF75 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */;
