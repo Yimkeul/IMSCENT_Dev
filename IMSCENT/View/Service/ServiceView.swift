@@ -14,13 +14,14 @@ struct ServiceView: View {
     @StateObject var PP = PhotoPickerViewModel()
     @StateObject var TM = TeachableViewModel()
 
-
     @Environment(\.presentationMode) var presentationMode
+    
 
     var body: some View {
         VStack {
-            customNavBar()
+            
             if PM.progressAmont <= 30 {
+                customNavBar()
                 ProgressView(value: PM.progressAmont, total: 30)
                     .progressViewStyle(RoundedRectProgressViewStyle())
                     .animation(.linear, value: PM.isAnimating)
@@ -34,8 +35,7 @@ struct ServiceView: View {
             case 20...30:
                 QuesThird(SM: SM, PM: PM, PP: PP)
             default:
-                EmptyView()
-//                LoadingView(SM: SM, PM: PM, PP: PP)
+                LoadingView(SM: SM, PM: PM, PP: PP)
             }
         }
     }
@@ -55,7 +55,6 @@ struct ServiceView: View {
                             .imageScale(.large)
                             .fontWeight(.semibold)
                     }
-//                    .disabled(false)
 
                     Spacer()
 

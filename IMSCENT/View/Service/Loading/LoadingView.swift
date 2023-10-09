@@ -29,14 +29,14 @@ struct LoadingView: View {
             } else {
                 VStack {
                     if RV.getRecommand?.resultFilter != nil {
-                        ResultView(SM: SM, PM: PM, PP: PP, TM : TM, RV : RV)
+                        ResultView(SM: SM, PM: PM, PP: PP, TM: TM, RV: RV)
                     }
-                }.task {
+                }.onAppear {
                     Recommand()
                 }
             }
         }
-            .task {
+            .onAppear {
             SM.isLoading = true
             TeachalbeMachine(uiImage: PP.selectedImage!) { error in
                 if let error = error {
@@ -114,6 +114,6 @@ struct LoadingView: View {
 
 }
 
-//#Preview {
-//    LoadingView()
-//}
+#Preview {
+    LoadingView()
+}

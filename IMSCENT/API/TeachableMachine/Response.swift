@@ -19,7 +19,7 @@ struct RecommandModel: Codable {
     
 }
 
-struct resultFilterValue: Codable {
+struct resultFilterValue: Codable, Hashable {
     let idx: Int
     let title: String
     let explain : String

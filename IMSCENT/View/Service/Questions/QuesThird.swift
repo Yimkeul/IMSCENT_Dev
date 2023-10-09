@@ -14,10 +14,15 @@ struct QuesThird: View {
     @StateObject var SM = ServiceMethod()
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
+
+
     @State private var isAnimating: Bool = false
 
     @State private var cISize: Double?
     @State private var cVSize: Double?
+
+    @State private var navService: Bool = false
+
 
     var body: some View {
         GeometryReader { geo in
@@ -29,11 +34,10 @@ struct QuesThird: View {
                     let inner = geo.size
                     VStack(spacing: 0) {
                         PickImage(width: size.width, height: inner.height)
-//                        GoPredictBtn(width: size.width, height: inner.height * 0.15)
                     }.frame(height: inner.height)
                 }
                 Spacer()
-                BottomArea(width: size.width * 0.7 , height : 50)
+                BottomArea(width: size.width * 0.7, height: 50)
             }
                 .frame(width: size.width, height: size.height)
                 .modifier(CAnimating(isAnimating: isAnimating))
@@ -90,9 +94,8 @@ struct QuesThird: View {
     @ViewBuilder
     private func GoPredictBtn(width: Double, height: Double) -> some View {
         if PP.selectedImage != nil {
-            NavigationLink {
-                LoadingView(SM: SM, PM: PM, PP: PP)
-                    .navigationBarHidden(true)
+            Button {
+                PM.progressAmont = 40
             } label: {
                 ZStack {
                     Rectangle()
