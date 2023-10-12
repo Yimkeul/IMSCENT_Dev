@@ -10,6 +10,7 @@ import SwiftUI
 
 class SaveViewModel: ObservableObject {
     @AppStorage("save") var SavePerfume: Data = Data()
+    @Published var SaveData:[resultFilterValue] = []
     
     func decodeSave() -> [resultFilterValue] {
           if let decodedArray = try? JSONDecoder().decode([resultFilterValue].self, from: SavePerfume) {

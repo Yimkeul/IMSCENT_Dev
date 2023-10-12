@@ -9,33 +9,38 @@ import SwiftUI
 import NukeUI
 
 struct LikeListView: View {
-    @StateObject private var SavePerfume = SaveViewModel()
+    @StateObject var SavePerfume = SaveViewModel()
     @Environment(\.presentationMode) var presentationMode
     @State private var isEditing = false
     @State private var isAnimating = false
+    @State private var isClick = false
+
+    @State private var shouldRefresh = false
+
 
     var body: some View {
-
-
         NavigationStack {
             VStack {
                 customNavBar()
-                List {
-                    ForEach(SavePerfume.decodeSave(), id: \.self) {
-                        perfume in
+                if SavePerfume.decodeSave().count > 0 {
+                    List {
+                        ForEach(SavePerfume.decodeSave(), id: \.self) {
+                            perfume in
 
-                        NavigationLink {
-                            LikeSelectedView(perfume: perfume)
-                                .navigationBarHidden(true)
-                        } label: {
-                            Text(perfume.title)
-                        }
-                    }
-                    .onDelete(perform: deleteItems)
-                }.listStyle(.plain)
-                    .environment(\.editMode, isEditing ? .constant(.active) : .constant(.inactive))
-                    .animation(.default, value: isAnimating)
+                            NavigationLink {
+                                LikeSelectedView(SavePerfume: SavePerfume, perfume: perfume)
+                                    .navigationBarHidden(true)
+                            } label: {
+                                Text(perfume.title)
+                            }
+                        }.onDelete(perform: deleteItems)
+                    }.listStyle(.plain)
+                } else {
+                    Spacer()
+                }
             }
+                .environment(\.editMode, isEditing ? .constant(.active) : .constant(.inactive))
+                .animation(.default, value: isAnimating)
         }
     }
     func deleteItems(at offsets: IndexSet) {
@@ -44,7 +49,7 @@ struct LikeListView: View {
             let perfume = currentArray[index]
             currentArray = currentArray.filter { $0.idx != perfume.idx }
         }
-        
+
         if let encodedArray = try? JSONEncoder().encode(currentArray) {
             SavePerfume.SavePerfume = encodedArray
         }
@@ -54,7 +59,7 @@ struct LikeListView: View {
     @ViewBuilder
     private func customNavBar() -> some View {
         VStack {
-            HStack{
+            HStack {
                 Button {
                     presentationMode.wrappedValue.dismiss()
                 } label: {

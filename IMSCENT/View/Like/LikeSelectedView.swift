@@ -10,7 +10,7 @@ import NukeUI
 
 struct LikeSelectedView: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject private var SavePerfume = SaveViewModel()
+    @StateObject var SavePerfume = SaveViewModel()
 
     @State var perfume: resultFilterValue
     @State private var showDeleteAlert = false
@@ -39,7 +39,7 @@ struct LikeSelectedView: View {
             }
                 .offset(y: -9)
             Spacer()
-        }
+        }       
     }
     @ViewBuilder
     private func customNavBar() -> some View {
@@ -80,8 +80,9 @@ struct LikeSelectedView: View {
                     message: Text("정말로 삭제하시겠습니까?"),
                     primaryButton: .default(Text("닫기"), action: { showDeleteAlert.toggle() }),
                     secondaryButton: .destructive(Text("삭제"), action: {
-                        Task { SavePerfume.popIDSave(idx: perfume.idx)
-                            presentationMode.wrappedValue.dismiss() }
+                        SavePerfume.popIDSave(idx: perfume.idx)
+                        presentationMode.wrappedValue.dismiss()
+                        
                     }
                     )
                 )
