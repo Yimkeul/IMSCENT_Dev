@@ -34,6 +34,14 @@ class SaveViewModel: ObservableObject {
         if let encodedArray = try? JSONEncoder().encode(currentArray) {
             SavePerfume = encodedArray
         }
+    }
+    
+    func popIDSave(idx: Int) {
+        var currentArray = decodeSave()
+        currentArray = currentArray.filter{ $0.idx != idx }
+        if let encodedArray = try? JSONEncoder().encode(currentArray) {
+            SavePerfume = encodedArray
+        }
         
     }
     

@@ -10,12 +10,18 @@ import NukeUI
 
 struct LikeSelectedView: View {
     @Environment(\.presentationMode) var presentationMode
+    @StateObject private var SavePerfume = SaveViewModel()
+
     @State var perfume: resultFilterValue
+    @State private var showDeleteAlert = false
+
     let UH = UIScreen.main.bounds.height
     let UW = UIScreen.main.bounds.width
+
+
     var body: some View {
         let imgUrl: URL = URL(string: perfume.imglink)!
-        
+
         VStack {
             customNavBar()
             NukeUI.LazyImage(url: imgUrl) {
@@ -46,7 +52,7 @@ struct LikeSelectedView: View {
                         .foregroundColor(.black)
                         .imageScale(.large)
                         .fontWeight(.semibold)
-                }
+                }.frame(width: 24)
 
                 Spacer()
 
@@ -59,30 +65,39 @@ struct LikeSelectedView: View {
                 Spacer()
 
                 Button {
-                    print("None")
+                    showDeleteAlert.toggle()
                 } label: {
-                    Image(systemName: "house")
-                        .foregroundColor(.clear)
+                    Image(systemName: "trash")
+                        .foregroundColor(.black)
                         .imageScale(.large)
                         .fontWeight(.semibold)
-                }.disabled(true)
-            }.padding(.horizontal, 16)
+                }
+                    .frame(width: 24)
+            }
+                .alert(isPresented: $showDeleteAlert) {
+                Alert(
+                    title: Text("삭제"),
+                    message: Text("정말로 삭제하시겠습니까?"),
+                    primaryButton: .default(Text("닫기"), action: { showDeleteAlert.toggle() }),
+                    secondaryButton: .destructive(Text("삭제"), action: {
+                        Task { SavePerfume.popIDSave(idx: perfume.idx)
+                            presentationMode.wrappedValue.dismiss() }
+                    }
+                    )
+                )
+            }
+                .padding(.horizontal, 16)
+
 
             Divider()
         }
-
     }
     @ViewBuilder
     private func perfumeDesc() -> some View {
-        VStack(alignment: .leading){
-//            Text("HHH")
+        VStack(alignment: .leading) {
             Text(perfume.title)
             Text(perfume.explain)
         }.padding()
     }
-    
-}
 
-//#Preview {
-//    LikeSelectedView()
-//}
+}

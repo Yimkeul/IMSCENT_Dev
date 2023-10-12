@@ -52,7 +52,6 @@ struct ResultView: View {
     @ViewBuilder
     private func perfumeDesc() -> some View {
         VStack(alignment: .leading){
-//            Text("HHH")
             Text(RV.getRecommand!.resultFilter.title)
             Text(RV.getRecommand!.resultFilter.explain)
         }.padding()
@@ -71,7 +70,7 @@ struct ResultView: View {
                             .foregroundColor(.black)
                             .imageScale(.large)
                             .fontWeight(.semibold)
-                    }
+                    }.frame(width: 24)
 
                     Spacer()
 
@@ -90,7 +89,9 @@ struct ResultView: View {
                             .foregroundColor(.clear)
                             .imageScale(.large)
                             .fontWeight(.semibold)
-                    }.disabled(true)
+                    }
+                    .frame(width: 24)
+                    .disabled(true)
                 }.padding(.horizontal, 16)
 
                 Divider()
@@ -102,7 +103,7 @@ struct ResultView: View {
     @ViewBuilder
     private func ResetBtn(width: Double, height: Double) -> some View {
         Button {
-            print("Hello world")
+            clearAll()
         } label: {
             ZStack {
                 Rectangle()

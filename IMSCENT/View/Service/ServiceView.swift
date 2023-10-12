@@ -54,7 +54,7 @@ struct ServiceView: View {
                             .foregroundColor(.black)
                             .imageScale(.large)
                             .fontWeight(.semibold)
-                    }
+                    }.frame(width: 24)
 
                     Spacer()
 
@@ -73,7 +73,9 @@ struct ServiceView: View {
                             .foregroundColor(.clear)
                             .imageScale(.large)
                             .fontWeight(.semibold)
-                    }.disabled(true)
+                    }
+                    .frame(width: 24)
+                    .disabled(true)
                 }.padding(.horizontal, 16)
 
                 Divider()
