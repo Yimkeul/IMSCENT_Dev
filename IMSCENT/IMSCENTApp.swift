@@ -11,7 +11,7 @@ import SwiftUI
 struct IMSCENTApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }
