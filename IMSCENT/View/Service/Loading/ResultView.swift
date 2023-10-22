@@ -14,49 +14,23 @@ struct ResultView: View {
     @StateObject var PP = PhotoPickerViewModel()
     @StateObject var TM = TeachableViewModel()
     @StateObject var RV = RecommandViewModel()
-    
+
     @StateObject private var SavePerfume = SaveViewModel()
-    
+
     @Environment(\.presentationMode) var presentationMode
     @State private var navHomeView: Bool = false
-    
-    
+    @State private var isAnimating: Bool = false
+
     let UH = UIScreen.main.bounds.height
     let UW = UIScreen.main.bounds.width
     var body: some View {
         let imgUrl: URL = URL(string: RV.getRecommand!.resultFilter.imglink)!
-//          let imgUrl: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/imscent-39e2f.appspot.com/o/images%2FP4.png?alt=media&token=ac9c8fa7-d52e-4356-85b1-8d9df2b47c88&_gl=1*")!
-        
-            VStack {
-                customNavBar()
-                NukeUI.LazyImage(url: imgUrl) {
-                    state in
-                    if let image = state.image {
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: 0){
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                                perfumeDesc()
-                            }
-                        }
-                    }
-                }
-                .offset(y: -9)
-                Spacer()
-                Divider()
-                BottomArea(width: UW * 0.7 , height : 50)
+        VStack {
+            customNavBar()
+            mainArea(imageUrl: imgUrl)
         }
     }
 
-    @ViewBuilder
-    private func perfumeDesc() -> some View {
-        VStack(alignment: .leading){
-            Text(RV.getRecommand!.resultFilter.title)
-            Text(RV.getRecommand!.resultFilter.explain)
-        }.padding()
-    }
-    
     @ViewBuilder
     private func customNavBar() -> some View {
         if SM.isLoading != true {
@@ -90,14 +64,89 @@ struct ResultView: View {
                             .imageScale(.large)
                             .fontWeight(.semibold)
                     }
-                    .frame(width: 24)
-                    .disabled(true)
+                        .frame(width: 24)
+                        .disabled(true)
                 }.padding(.horizontal, 16)
 
                 Divider()
             }
         }
 
+    }
+
+    @ViewBuilder
+    private func mainArea(imageUrl: URL) -> some View {
+        GeometryReader { geo in
+            let size = geo.size
+            VStack {
+                NukeUI.LazyImage(url: imageUrl) {
+                    state in
+                    if let image = state.image {
+                        GeometryReader { geo in
+                            let insize = geo.size
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: insize.width, height: insize.height)
+                            VStack {
+                                Spacer()
+                                Text(RV.getRecommand!.resultFilter.title)
+                                    .multilineTextAlignment(.leading)
+                                    .font(.system(size: 20, weight: .semibold))
+                                    .offset(y: isAnimating ? -32 : 10)
+                                    .opacity(isAnimating ? 1 : 0)
+                                    .animation(.easeInOut(duration: 0.5).delay(0.5), value: isAnimating)
+                                    .onAppear(perform: {
+                                    isAnimating = true
+                                })
+                            }.frame(width: insize.width, height: insize.height)
+                        }
+                    } else {
+                        Spacer()
+                    }
+                }.offset(y: -6.5)
+                Divider()
+                    .offset(y: -12.5)
+                BottomArea(width: size.width * 0.7, height: 50)
+                    .padding(.bottom, 6.5)
+            }.frame(width: size.width, height: size.height)
+        }
+    }
+
+    @ViewBuilder
+    private func perfumeDesc() -> some View {
+        Text(RV.getRecommand!.resultFilter.title)
+            .multilineTextAlignment(.leading)
+            .font(.system(size: 20, weight: .semibold))
+            .padding()
+    }
+
+    @ViewBuilder
+    private func BottomArea(width: Double, height: Double) -> some View {
+
+        HStack {
+            Spacer()
+            Button {
+                print("데이터 : \(RV.getRecommand!.resultFilter)")
+                if SavePerfume.decodeSave().contains(RV.getRecommand!.resultFilter) {
+                    // 이미 저장되어 있는 경우
+                    SavePerfume.popLastSave()
+                } else {
+                    // 저장되어 있지 않은 경우
+                    SavePerfume.encodeSave(value: RV.getRecommand!.resultFilter)
+                }
+            } label: {
+                Image(systemName: SavePerfume.decodeSave().contains(RV.getRecommand!.resultFilter) ? "heart.fill" : "heart")
+                    .font(.system(size: 20, weight: .bold))
+                    .imageScale(.large)
+                    .foregroundColor(SavePerfume.decodeSave().contains(RV.getRecommand!.resultFilter) ? .red : .black)
+            }
+
+            Spacer()
+            ResetBtn(width: width, height: height)
+        }
+
+            .padding()
     }
 
     @ViewBuilder
@@ -118,35 +167,6 @@ struct ResultView: View {
             }
         }
     }
-    
-    @ViewBuilder
-    private func BottomArea(width: Double, height: Double) -> some View {
-        
-            HStack {
-                Spacer()
-                Button {
-                    print("데이터 : \(RV.getRecommand!.resultFilter)")
-                    if SavePerfume.decodeSave().contains(RV.getRecommand!.resultFilter) {
-                        // 이미 저장되어 있는 경우
-                        SavePerfume.popLastSave()
-                    } else {
-                        // 저장되어 있지 않은 경우
-                        SavePerfume.encodeSave(value: RV.getRecommand!.resultFilter)
-                    }
-                } label: {
-                    Image(systemName: SavePerfume.decodeSave().contains(RV.getRecommand!.resultFilter) ? "heart.fill" : "heart")
-                        .font(.system(size: 20, weight: .bold))
-                        .imageScale(.large)
-                        .foregroundColor(SavePerfume.decodeSave().contains(RV.getRecommand!.resultFilter) ? .red : .black)
-                }
-
-                Spacer()
-                ResetBtn(width: width, height: height)
-            }
-        
-        .padding()
-    }
-
 
     private func clearAll() {
         PM.progressAmont = 0.0

@@ -97,7 +97,6 @@ struct LikeSelectedView: View {
     private func perfumeDesc() -> some View {
         VStack(alignment: .leading) {
             Text(perfume.title)
-            Text(perfume.explain)
         }.padding()
     }
 
