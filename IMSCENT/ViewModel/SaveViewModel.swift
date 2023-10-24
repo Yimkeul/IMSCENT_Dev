@@ -10,7 +10,6 @@ import SwiftUI
 
 class SaveViewModel: ObservableObject {
     @AppStorage("save") var SavePerfume: Data = Data()
-    @Published var SaveData:[resultFilterValue] = []
     
     func decodeSave() -> [resultFilterValue] {
           if let decodedArray = try? JSONDecoder().decode([resultFilterValue].self, from: SavePerfume) {
@@ -39,11 +38,32 @@ class SaveViewModel: ObservableObject {
     
     func popIDSave(idx: Int) {
         var currentArray = decodeSave()
-        currentArray = currentArray.filter{ $0.idx != idx }
+        currentArray = currentArray.filter{ idx != $0.idx }
         if let encodedArray = try? JSONEncoder().encode(currentArray) {
             SavePerfume = encodedArray
         }
-        
     }
-    
 }
+
+
+//func deleteItmes(at offsets: IndexSet) {
+//    var currentArray = SavePerfume.decodeSave()
+//    offsets.forEach { index in
+//        let perfume = currentArray[index]
+//        currentArray = currentArray.filter {$0.idx != perfume.idx}
+//    }
+//    if let encodedArray = try? JSONEncoder().encode(currentArray) {
+//        SavePerfume.SavePerfume = encodedArray
+//    }
+//}
+//
+//
+//func deleteDD(_ perfume : resultFilterValue) {
+//    var currentArray = SavePerfume.decodeSave()
+//    if let index = currentArray.firstIndex(where: {perfume.idx == $0.idx}) {
+//        currentArray.remove(at: index)
+//    }
+//    if let encodedArray = try? JSONEncoder().encode(currentArray) {
+//        SavePerfume.SavePerfume = encodedArray
+//    }
+//}

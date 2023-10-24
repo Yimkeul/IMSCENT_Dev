@@ -14,14 +14,8 @@ struct QuesThird: View {
     @StateObject var SM = ServiceMethod()
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
-
-
     @State private var isAnimating: Bool = false
-
-    @State private var cISize: Double?
-    @State private var cVSize: Double?
-
-    @State private var navService: Bool = false
+    
 
 
     var body: some View {
@@ -29,14 +23,10 @@ struct QuesThird: View {
             let size = geo.size
             VStack {
                 TopArea(height: size.height * 0.2)
-                GeometryReader {
-                    geo in
-                    let inner = geo.size
-                    VStack(spacing: 0) {
-                        PickImage(width: size.width, height: inner.height)
-                    }.frame(height: inner.height)
+                GeometryReader { geo in
+                    let insize = geo.size
+                    PickImage(width: insize.width, height: insize.height)
                 }
-                Spacer()
                 BottomArea(width: size.width * 0.7, height: 50)
             }
                 .frame(width: size.width, height: size.height)
@@ -66,17 +56,18 @@ struct QuesThird: View {
             }
 
             PhotosPicker(selection: $PP.imageSelection) {
-                SM.TitleImage(image: "camera", height: height) }
-
+                SM.TitleImage(image: "camera", height: height)
+            }
         }
+
     }
     @ViewBuilder
-    private func PickImage(width: Double, height: Double) -> some View {
+    private func PickImage(width: CGFloat, height: CGFloat) -> some View {
         if let image = PP.selectedImage {
             Image(uiImage: image)
                 .resizable()
-                .frame(width: width, height: height)
                 .scaledToFit()
+                .frame(width: width, height: height)
                 .onAppear (perform: {
                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     Task {

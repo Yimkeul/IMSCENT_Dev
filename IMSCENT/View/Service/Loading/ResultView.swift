@@ -28,6 +28,7 @@ struct ResultView: View {
         VStack {
             customNavBar()
             mainArea(imageUrl: imgUrl)
+            BottomArea(width: UW * 0.7, height: 50)
         }
     }
 
@@ -76,49 +77,43 @@ struct ResultView: View {
 
     @ViewBuilder
     private func mainArea(imageUrl: URL) -> some View {
-        GeometryReader { geo in
-            let size = geo.size
-            VStack {
-                NukeUI.LazyImage(url: imageUrl) {
-                    state in
-                    if let image = state.image {
-                        GeometryReader { geo in
-                            let insize = geo.size
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: insize.width, height: insize.height)
-                            VStack {
-                                Spacer()
-                                Text(RV.getRecommand!.resultFilter.title)
-                                    .multilineTextAlignment(.leading)
-                                    .font(.system(size: 20, weight: .semibold))
-                                    .offset(y: isAnimating ? -32 : 10)
-                                    .opacity(isAnimating ? 1 : 0)
-                                    .animation(.easeInOut(duration: 0.5).delay(0.5), value: isAnimating)
-                                    .onAppear(perform: {
-                                    isAnimating = true
-                                })
-                            }.frame(width: insize.width, height: insize.height)
+        NukeUI.LazyImage(url: imageUrl) { state in
+            if let image = state.image {
+                VStack (alignment: .center) {
+                    ZStack {
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: UW * 0.9)
+                            .cornerRadius(20)
+                        VStack {
+                            Spacer()
+                            Text(RV.getRecommand!.resultFilter.title)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(.white)
+                                .font(.largeTitle)
+                                .fontWeight(.heavy)
+                                .shadow(
+                                color: Color(.black)
+                                    .opacity(0.15),
+                                radius: 2, x: 2, y: 2
+                            )
+                                .offset(y: isAnimating ? -32 : 10)
+                                .opacity(isAnimating ? 1 : 0)
+                                .animation(.easeInOut(duration: 0.5).delay(0.5), value: isAnimating)
+                                .onAppear(perform: {
+                                isAnimating = true
+                            })
                         }
-                    } else {
-                        Spacer()
                     }
-                }.offset(y: -6.5)
-                Divider()
-                    .offset(y: -12.5)
-                BottomArea(width: size.width * 0.7, height: 50)
-                    .padding(.bottom, 6.5)
-            }.frame(width: size.width, height: size.height)
+                }
+                    .padding(16)
+            } else {
+                Spacer()
+            }
         }
-    }
 
-    @ViewBuilder
-    private func perfumeDesc() -> some View {
-        Text(RV.getRecommand!.resultFilter.title)
-            .multilineTextAlignment(.leading)
-            .font(.system(size: 20, weight: .semibold))
-            .padding()
+
     }
 
     @ViewBuilder
