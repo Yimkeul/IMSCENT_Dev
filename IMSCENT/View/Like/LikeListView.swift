@@ -23,57 +23,64 @@ struct LikeListView: View {
             if SavePerfume.decodeSave().count > 0 {
                 ScrollView {
                     Spacer().frame(height: 16)
-                    ForEach(SavePerfume.decodeSave(), id: \.self) {
+                    ForEach(SavePerfume.decodeSave().reversed(), id: \.self) {
                         perfume in
                         let imgUrl: URL = URL(string: perfume.imglink)!
-                        HStack (alignment: .top) {
-                            NukeUI.LazyImage(url: imgUrl) { state in
-                                if let image = state.image {
+                        NukeUI.LazyImage(url: imgUrl) { state in
+                            if let image = state.image {
+                                ZStack {
                                     image
                                         .resizable()
                                         .scaledToFill()
-                                        .frame(width: (UW / 2) - 16, height: 200)
+                                        .frame(width: UW - 32, height: 270)
                                         .cornerRadius(20)
-                                } else {
-                                    Spacer()
-                                        .frame(width: (UW / 2) - 16, height: 200)
-                                }
-                            }
-                                .padding(.trailing, 32)
-                            VStack (alignment: .leading) {
-                                Text(perfume.title)
-                                    .font(.headline)
-                                Text("idx값 : \(perfume.idx)")
-                                    .font(.subheadline)
-
-                                Spacer()
-                                Button {
-                                    showDeleteAlert = true
-                                    target = perfume.idx
-                                    print("타겟 \(target)")
-                                } label: {
-                                    Image(systemName: "trash")
-                                        .foregroundColor(.black)
-                                        .imageScale(.large)
-                                        .fontWeight(.semibold)
-                                }
-                                    .alert(isPresented: $showDeleteAlert) {
-                                    Alert(
-                                        title: Text("삭제"),
-                                        message: Text("정말로 삭제하시겠습니까? 타겟 \(target)"),
-                                        primaryButton: .default(Text("닫기"), action: { showDeleteAlert = false }),
-                                        secondaryButton: .destructive(Text("삭제"), action: {
-                                            withAnimation {
-                                                SavePerfume.popIDSave(idx: target)
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Spacer()
+                                            Button {
+                                                showDeleteAlert = true
+                                                target = perfume.idx
+                                            } label: {
+                                                Image(systemName: "trash")
+                                                    .foregroundColor(.black)
+                                                    .imageScale(.medium)
+                                                    .fontWeight(.semibold)
                                             }
-                                        })
-                                    )
+                                            .padding()
+                                                .alert(isPresented: $showDeleteAlert) {
+                                                Alert(
+                                                    title: Text("삭제"),
+                                                    message: Text("정말로 삭제하시겠습니까?"),
+                                                    primaryButton: .default(Text("닫기"), action: { showDeleteAlert = false }),
+                                                    secondaryButton: .destructive(Text("삭제"), action: {
+                                                        withAnimation {
+                                                            SavePerfume.popIDSave(idx: target)
+                                                        }
+                                                    })
+                                                )
+                                            }
+                                        }
+                                        Spacer()
+                                        VStack(alignment: .leading) {
+                                            Text(perfume.maker)
+                                                .font(.system(size: 10, weight: .semibold))
+                                            Text(perfume.title)
+                                                .font(.system(size: 16, weight: .bold))
+                                            Text(perfume.type)
+                                                .font(.system(size: 12, weight: .medium))
+                                                .foregroundStyle(Color.cPGray)
+                                        }
+                                        .padding()
+                                    }
                                 }
+                                .padding(.horizontal, 16)
+                                .padding(.bottom, 16)
+                                
+                            } else {
+                                Spacer()
+                                    .frame(width: UW - 64, height: 250)
                             }
-                            Spacer()
                         }
-                            .padding(.horizontal, 16)
-                            .padding(.bottom, 16)
                     }
                 }
                     .offset(y: -7)

@@ -21,7 +21,9 @@ struct RecommandModel: Codable {
 
 struct resultFilterValue: Codable, Hashable {
     let idx: Int
+    let maker: String
     let title: String
+    let type: String
     let sex: String
     let age: Int
     let style: String
