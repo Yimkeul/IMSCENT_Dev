@@ -14,6 +14,7 @@ struct QuesThird: View {
     @StateObject var SM = ServiceMethod()
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
+    @StateObject var SC = ServerCheckViewModel()
     @State private var isAnimating: Bool = false
     
 
@@ -33,6 +34,9 @@ struct QuesThird: View {
                 .modifier(CAnimating(isAnimating: isAnimating))
         }.onAppear(perform: {
             isAnimating = true
+            if SC.getCheck?.success != true {
+                SC.startBackgroundCheck()
+            }
         })
     }
 
@@ -84,7 +88,7 @@ struct QuesThird: View {
 
     @ViewBuilder
     private func GoPredictBtn(width: Double, height: Double) -> some View {
-        if PP.selectedImage != nil {
+        if PP.selectedImage != nil && SC.getCheck?.success == true {
             Button {
                 PM.progressAmont = 40
             } label: {
@@ -101,6 +105,15 @@ struct QuesThird: View {
                 }
             }
                 .modifier(CAnimatingDelay(isAnimating: false, delay: 0.8, duration: 0.3))
+        } else if PP.selectedImage == nil && SC.getCheck?.success == true {
+            Rectangle()
+                .foregroundColor(.clear)
+                .frame(width: width, height: height)
+                .cornerRadius(8)
+        } else if PP.selectedImage == nil && SC.getCheck?.success != true {
+            ProgressView()
+                .frame(width: width, height: height)
+            
         }
     }
     @ViewBuilder

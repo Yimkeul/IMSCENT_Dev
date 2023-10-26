@@ -44,24 +44,6 @@
         "revision" : "9dcaa4b333db437b0fbfaf453fad29069044a8b4",
         "version" : "6.6.0"
       }
-    },
-    {
-      "identity" : "scalingheaderscrollview",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/exyte/ScalingHeaderScrollView.git",
-      "state" : {
-        "revision" : "1c6fa51ffcea45ffbf0b83144d7bf04287dec74d",
-        "version" : "1.0.2"
-      }
-    },
-    {
-      "identity" : "swiftui-introspect",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/siteline/SwiftUI-Introspect.git",
-      "state" : {
-        "revision" : "121c146fe591b1320238d054ae35c81ffa45f45a",
-        "version" : "0.12.0"
-      }
     }
   ],
   "version" : 2

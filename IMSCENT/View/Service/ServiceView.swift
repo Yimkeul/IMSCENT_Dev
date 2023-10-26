@@ -13,13 +13,13 @@ struct ServiceView: View {
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
     @StateObject var TM = TeachableViewModel()
+    @StateObject var SC = ServerCheckViewModel()
 
     @Environment(\.presentationMode) var presentationMode
     
 
     var body: some View {
         VStack {
-            
             if PM.progressAmont <= 30 {
                 customNavBar()
                 ProgressView(value: PM.progressAmont, total: 30)
@@ -33,9 +33,14 @@ struct ServiceView: View {
             case 10:
                 QuesSecond(SM: SM, PM: PM, PP: PP)
             case 20...30:
-                QuesThird(SM: SM, PM: PM, PP: PP)
+                QuesThird(SM: SM, PM: PM, PP: PP, SC: SC)
             default:
                 LoadingView(SM: SM, PM: PM, PP: PP)
+            }
+        }
+        .onAppear {
+            if SC.getCheck?.success != true {
+                SC.startBackgroundCheck()
             }
         }
     }

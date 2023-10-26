@@ -24,7 +24,7 @@
 		8694DDC12AB9856700636CA1 /* QuesThird.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8694DDC02AB9856700636CA1 /* QuesThird.swift */; };
 		869F24EC2AB91CA700DF9CAA /* PhotoPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F24EB2AB91CA700DF9CAA /* PhotoPickerViewModel.swift */; };
 		869F24F02AB91F1D00DF9CAA /* ServiceMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F24EF2AB91F1D00DF9CAA /* ServiceMethod.swift */; };
-		86AF4ADB2AC08FD30012BF75 /* ScalingHeaderScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 86AF4ADA2AC08FD30012BF75 /* ScalingHeaderScrollView */; };
+		86A08F4C2AEA211500A7A2CC /* ServerCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A08F4B2AEA211500A7A2CC /* ServerCheckViewModel.swift */; };
 		86B6BB722AB58DB4006344EB /* IMSCENTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6BB712AB58DB4006344EB /* IMSCENTApp.swift */; };
 		86B6BB742AB58DB4006344EB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6BB732AB58DB4006344EB /* HomeView.swift */; };
 		86B6BB762AB58DB5006344EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B6BB752AB58DB5006344EB /* Assets.xcassets */; };
@@ -57,6 +57,7 @@
 		8694DDC02AB9856700636CA1 /* QuesThird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuesThird.swift; sourceTree = "<group>"; };
 		869F24EB2AB91CA700DF9CAA /* PhotoPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewModel.swift; sourceTree = "<group>"; };
 		869F24EF2AB91F1D00DF9CAA /* ServiceMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMethod.swift; sourceTree = "<group>"; };
+		86A08F4B2AEA211500A7A2CC /* ServerCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerCheckViewModel.swift; sourceTree = "<group>"; };
 		86B6BB6E2AB58DB4006344EB /* IMSCENT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMSCENT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B6BB712AB58DB4006344EB /* IMSCENTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMSCENTApp.swift; sourceTree = "<group>"; };
 		86B6BB732AB58DB4006344EB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -84,7 +85,6 @@
 				863D31692AC9746D009922A6 /* NukeVideo in Frameworks */,
 				863D31652AC9746D009922A6 /* NukeExtensions in Frameworks */,
 				86CBF8072AC205C600366A10 /* ReactiveMoya in Frameworks */,
-				86AF4ADB2AC08FD30012BF75 /* ScalingHeaderScrollView in Frameworks */,
 				86CBF8052AC205C600366A10 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +136,7 @@
 				86CBF80D2AC2066C00366A10 /* TeachableMachineViewModel.swift */,
 				863D316E2AC9CCBA009922A6 /* RecommandViewModel.swift */,
 				864F4DF42AD448BD006C0FA8 /* SaveViewModel.swift */,
+				86A08F4B2AEA211500A7A2CC /* ServerCheckViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -193,7 +194,8 @@
 		86B6BB802AB58E2C006344EB /* API */ = {
 			isa = PBXGroup;
 			children = (
-				86CBF80A2AC2060600366A10 /* TeachableMachine */,
+				86CBF80B2AC2061A00366A10 /* Service.swift */,
+				86CBF80F2AC2067F00366A10 /* Response.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -226,15 +228,6 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		86CBF80A2AC2060600366A10 /* TeachableMachine */ = {
-			isa = PBXGroup;
-			children = (
-				86CBF80B2AC2061A00366A10 /* Service.swift */,
-				86CBF80F2AC2067F00366A10 /* Response.swift */,
-			);
-			path = TeachableMachine;
-			sourceTree = "<group>";
-		};
 		86F637FF2ABC92AD007C6B49 /* Method */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,7 +254,6 @@
 			);
 			name = IMSCENT;
 			packageProductDependencies = (
-				86AF4ADA2AC08FD30012BF75 /* ScalingHeaderScrollView */,
 				86CBF8022AC205C600366A10 /* CombineMoya */,
 				86CBF8042AC205C600366A10 /* Moya */,
 				86CBF8062AC205C600366A10 /* ReactiveMoya */,
@@ -300,7 +292,6 @@
 			);
 			mainGroup = 86B6BB652AB58DB4006344EB;
 			packageReferences = (
-				86AF4AD92AC08FD30012BF75 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */,
 				86CBF8012AC205C600366A10 /* XCRemoteSwiftPackageReference "Moya" */,
 				863D31612AC9746D009922A6 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
@@ -336,6 +327,7 @@
 				8694DDBD2AB984D300636CA1 /* QuesFirst.swift in Sources */,
 				86CBF8122AC20F6500366A10 /* LoadingView.swift in Sources */,
 				866F774E2AC2A35E0081C27B /* Progressing.swift in Sources */,
+				86A08F4C2AEA211500A7A2CC /* ServerCheckViewModel.swift in Sources */,
 				86CBF80E2AC2066C00366A10 /* TeachableMachineViewModel.swift in Sources */,
 				86C8871F2AB6CE2D00783D89 /* ServiceView.swift in Sources */,
 				869F24EC2AB91CA700DF9CAA /* PhotoPickerViewModel.swift in Sources */,
@@ -567,14 +559,6 @@
 				minimumVersion = 12.1.6;
 			};
 		};
-		86AF4AD92AC08FD30012BF75 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/exyte/ScalingHeaderScrollView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.1;
-			};
-		};
 		86CBF8012AC205C600366A10 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -605,11 +589,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 863D31612AC9746D009922A6 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeVideo;
-		};
-		86AF4ADA2AC08FD30012BF75 /* ScalingHeaderScrollView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 86AF4AD92AC08FD30012BF75 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */;
-			productName = ScalingHeaderScrollView;
 		};
 		86CBF8022AC205C600366A10 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;

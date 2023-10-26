@@ -29,3 +29,7 @@ struct resultFilterValue: Codable, Hashable {
     let style: String
     let imglink: String
 }
+
+struct ServerCheckModel: Codable {
+    let success : Bool
+}

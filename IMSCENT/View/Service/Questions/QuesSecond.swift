@@ -24,7 +24,6 @@ struct QuesSecond: View {
                 ageRangeBtn()
                 Spacer()
                 ageDetailBtn(width: size.width, height: size.height * 0.4)
-
                 Spacer()
                 BottomArea()
             }

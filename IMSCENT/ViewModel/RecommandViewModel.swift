@@ -12,7 +12,7 @@ import Combine
 class RecommandViewModel: ObservableObject {
     @Published var getRecommand: RecommandModel? // 분석 결과
     
-    private let provider = MoyaProvider<TeachableService>()
+    private let provider = MoyaProvider<APIService>()
     
     func requestRecoomand(sex: String, age: String, style: String, completion: @escaping (Result<RecommandModel, Error>) -> Void) {
         provider.request(.getRecommand(sex: sex, age: age, style:style)) { result in
