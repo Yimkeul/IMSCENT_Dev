@@ -14,49 +14,23 @@ struct ResultView: View {
     @StateObject var PP = PhotoPickerViewModel()
     @StateObject var TM = TeachableViewModel()
     @StateObject var RV = RecommandViewModel()
-    
+
     @StateObject private var SavePerfume = SaveViewModel()
-    
+
     @Environment(\.presentationMode) var presentationMode
     @State private var navHomeView: Bool = false
-    
-    
+
     let UH = UIScreen.main.bounds.height
     let UW = UIScreen.main.bounds.width
     var body: some View {
         let imgUrl: URL = URL(string: RV.getRecommand!.resultFilter.imglink)!
-//          let imgUrl: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/imscent-39e2f.appspot.com/o/images%2FP4.png?alt=media&token=ac9c8fa7-d52e-4356-85b1-8d9df2b47c88&_gl=1*")!
-        
-            VStack {
-                customNavBar()
-                NukeUI.LazyImage(url: imgUrl) {
-                    state in
-                    if let image = state.image {
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: 0){
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                                perfumeDesc()
-                            }
-                        }
-                    }
-                }
-                .offset(y: -9)
-                Spacer()
-                Divider()
-                BottomArea(width: UW * 0.7 , height : 50)
+        VStack {
+            customNavBar()
+            mainArea(imageUrl: imgUrl)
+            BottomArea(width: UW - 32, height: 50)
         }
     }
 
-    @ViewBuilder
-    private func perfumeDesc() -> some View {
-        VStack(alignment: .leading){
-            Text(RV.getRecommand!.resultFilter.title)
-            Text(RV.getRecommand!.resultFilter.explain)
-        }.padding()
-    }
-    
     @ViewBuilder
     private func customNavBar() -> some View {
         if SM.isLoading != true {
@@ -90,14 +64,72 @@ struct ResultView: View {
                             .imageScale(.large)
                             .fontWeight(.semibold)
                     }
-                    .frame(width: 24)
-                    .disabled(true)
+                        .frame(width: 24)
+                        .disabled(true)
                 }.padding(.horizontal, 16)
 
                 Divider()
             }
         }
 
+    }
+
+    @ViewBuilder
+    private func mainArea(imageUrl: URL) -> some View {
+        NukeUI.LazyImage(url: imageUrl) { state in
+            if let image = state.image {
+                ZStack {
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UW - 32)
+                        .cornerRadius(20)
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Spacer()
+                            Button {
+                                print("데이터 : \(RV.getRecommand!.resultFilter)")
+                                if SavePerfume.decodeSave().contains(RV.getRecommand!.resultFilter) {
+                                    // 이미 저장되어 있는 경우
+                                    SavePerfume.popIDSave(idx: RV.getRecommand!.resultFilter.idx)
+                                } else {
+                                    // 저장되어 있지 않은 경우
+                                    SavePerfume.encodeSave(value: RV.getRecommand!.resultFilter)
+                                }
+                            } label: {
+                                Image(systemName: SavePerfume.decodeSave().contains(RV.getRecommand!.resultFilter) ? "heart.fill" : "heart")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .imageScale(.large)
+                                    .foregroundColor(SavePerfume.decodeSave().contains(RV.getRecommand!.resultFilter) ? .red : .black)
+                            }
+                            .padding()
+                        }
+                        Spacer()
+                        VStack(alignment: .leading) {
+                            Text(RV.getRecommand!.resultFilter.maker)
+                                .font(.system(size: 16, weight: .semibold))
+                            Text(RV.getRecommand!.resultFilter.title)
+                                .font(.system(size: 22, weight: .bold))
+                                .padding(.bottom, 8)
+                            Text("\(RV.getRecommand!.resultFilter.type)향")
+                                .font(.system(size: 16, weight: .medium))
+                        }
+                            .padding()
+                    }
+                }
+                .padding(.horizontal, 16)
+            } else {
+                Spacer()
+            }
+        }
+
+
+    }
+
+    @ViewBuilder
+    private func BottomArea(width: Double, height: Double) -> some View {
+        ResetBtn(width: width, height: height)
+            .padding()
     }
 
     @ViewBuilder
@@ -118,35 +150,6 @@ struct ResultView: View {
             }
         }
     }
-    
-    @ViewBuilder
-    private func BottomArea(width: Double, height: Double) -> some View {
-        
-            HStack {
-                Spacer()
-                Button {
-                    print("데이터 : \(RV.getRecommand!.resultFilter)")
-                    if SavePerfume.decodeSave().contains(RV.getRecommand!.resultFilter) {
-                        // 이미 저장되어 있는 경우
-                        SavePerfume.popLastSave()
-                    } else {
-                        // 저장되어 있지 않은 경우
-                        SavePerfume.encodeSave(value: RV.getRecommand!.resultFilter)
-                    }
-                } label: {
-                    Image(systemName: SavePerfume.decodeSave().contains(RV.getRecommand!.resultFilter) ? "heart.fill" : "heart")
-                        .font(.system(size: 20, weight: .bold))
-                        .imageScale(.large)
-                        .foregroundColor(SavePerfume.decodeSave().contains(RV.getRecommand!.resultFilter) ? .red : .black)
-                }
-
-                Spacer()
-                ResetBtn(width: width, height: height)
-            }
-        
-        .padding()
-    }
-
 
     private func clearAll() {
         PM.progressAmont = 0.0

@@ -9,12 +9,13 @@ import Foundation
 import Moya
 import Combine
 
-enum TeachableService {
+enum APIService {
     case getAll(imageData: Data)
     case getRecommand(sex: String, age: String, style: String)
+    case getCheck
 }
 
-extension TeachableService: TargetType {
+extension APIService: TargetType {
     var baseURL: URL {
         return URL(string: "https://port-0-teachablemachineapi-2u73n2llm7ax6bh.sel5.cloudtype.app")!
     }
@@ -25,15 +26,16 @@ extension TeachableService: TargetType {
             return "/uploadImage"
         case .getRecommand:
             return "/recommand"
+        case .getCheck:
+            return "/"
         }
-
     }
 
     var method: Moya.Method {
         switch self {
         case .getAll:
             return .post
-        case .getRecommand:
+        case .getRecommand , .getCheck:
             return .get
         }
 
@@ -50,6 +52,8 @@ extension TeachableService: TargetType {
                 "style": style
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case .getCheck:
+            return .requestPlain
         }
 
     }
@@ -58,7 +62,7 @@ extension TeachableService: TargetType {
         switch self {
         case .getAll:
             return ["Content-type": "multipart/form-data"]
-        case .getRecommand:
+        case .getRecommand, .getCheck:
             return ["Content-Type": "application/json"]
         }
 

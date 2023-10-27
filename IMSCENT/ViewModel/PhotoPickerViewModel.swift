@@ -10,12 +10,11 @@ import SwiftUI
 import PhotosUI
 
 final class PhotoPickerViewModel: ObservableObject {
-//    @Published private(set) var selectedImage: UIImage? = nil
-    @Published var selectedImage: UIImage? = nil
+    @Published private(set) var selectedImage: UIImage? = nil
     @Published var imageSelection: PhotosPickerItem? = nil
     {
         didSet {
-            selectedImage = nil // 선택한 이미지 데이터 초기화
+//            selectedImage = nil 
             setImage(from: imageSelection)
         }
     }

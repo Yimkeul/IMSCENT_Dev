@@ -21,11 +21,15 @@ struct RecommandModel: Codable {
 
 struct resultFilterValue: Codable, Hashable {
     let idx: Int
+    let maker: String
     let title: String
-    let explain : String
+    let type: String
     let sex: String
     let age: Int
     let style: String
     let imglink: String
-    let link: String
+}
+
+struct ServerCheckModel: Codable {
+    let success : Bool
 }

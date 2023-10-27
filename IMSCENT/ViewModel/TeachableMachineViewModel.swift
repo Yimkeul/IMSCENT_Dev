@@ -12,7 +12,7 @@ import Combine
 class TeachableViewModel: ObservableObject {
     @Published var getAll: TeachableModel? // 분석 결과
     
-    private let provider = MoyaProvider<TeachableService>()
+    private let provider = MoyaProvider<APIService>()
     
     func requestAll(imageData: Data, completion: @escaping (Result<TeachableModel, Error>) -> Void) {
         provider.request(.getAll(imageData: imageData)) { result in

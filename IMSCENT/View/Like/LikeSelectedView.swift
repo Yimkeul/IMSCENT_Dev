@@ -24,23 +24,10 @@ struct LikeSelectedView: View {
 
         VStack {
             customNavBar()
-            NukeUI.LazyImage(url: imgUrl) {
-                state in
-                if let image = state.image {
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 0) {
-                            image
-                                .resizable()
-                                .scaledToFill()
-                            perfumeDesc()
-                        }
-                    }
-                }
-            }
-                .offset(y: -9)
-            Spacer()
-        }       
+            mainArea(imageUrl: imgUrl)
+        }
     }
+
     @ViewBuilder
     private func customNavBar() -> some View {
         VStack {
@@ -82,7 +69,7 @@ struct LikeSelectedView: View {
                     secondaryButton: .destructive(Text("삭제"), action: {
                         SavePerfume.popIDSave(idx: perfume.idx)
                         presentationMode.wrappedValue.dismiss()
-                        
+
                     }
                     )
                 )
@@ -94,11 +81,41 @@ struct LikeSelectedView: View {
         }
     }
     @ViewBuilder
-    private func perfumeDesc() -> some View {
-        VStack(alignment: .leading) {
-            Text(perfume.title)
-            Text(perfume.explain)
-        }.padding()
+    private func mainArea(imageUrl: URL) -> some View {
+        NukeUI.LazyImage(url: imageUrl) { state in
+            if let image = state.image {
+                VStack (alignment: .center) {
+                    ZStack {
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: UW * 0.9)
+                            .cornerRadius(20)
+                            .shadow(
+                            color: Color(.black)
+                                .opacity(0.4),
+                            radius: 8, x: 0, y: 8
+                        )
+                        VStack {
+                            Spacer()
+                            Text(perfume.title)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(.white)
+                                .font(.largeTitle)
+                                .fontWeight(.heavy)
+                                .shadow(
+                                color: Color(.black)
+                                    .opacity(0.15),
+                                radius: 2, x: 2, y: 2
+                            )
+                                .padding(.bottom, 32)
+                        }
+                    }
+                }
+                    .padding(16)
+            } else {
+                Spacer()
+            }
+        }
     }
-
 }

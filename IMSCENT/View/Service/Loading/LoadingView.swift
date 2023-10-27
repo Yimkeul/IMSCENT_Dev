@@ -15,11 +15,14 @@ struct LoadingView: View {
     @StateObject var PP = PhotoPickerViewModel()
     @StateObject var TM = TeachableViewModel()
     @StateObject var RV = RecommandViewModel()
+    @StateObject var SC = ServerCheckViewModel()
 
     @Environment(\.presentationMode) var presentationMode
 
     @State private var showErrorAlert = false
     @State private var shouldRetryTask = false
+    
+    @State var isCheckServerConnection: Bool = true
 
     var body: some View {
         VStack {
@@ -43,6 +46,7 @@ struct LoadingView: View {
                     print("Error : \(error.localizedDescription)")
                     showErrorAlert = true
                     shouldRetryTask = true
+                    isCheckServerConnection = false
                 } else {
                     print("Processing compoleted successfully")
                     shouldRetryTask = false
@@ -53,30 +57,38 @@ struct LoadingView: View {
 
     @ViewBuilder
     private func ProgressView() -> some View {
-        Progressing()
+        LoadingAnimation(isCheckServerConnection : $isCheckServerConnection)
             .alert(isPresented: $showErrorAlert) {
             Alert(
                 title: Text("오류 발생"),
-                message: Text("서버와의 연결이 불안정합니다."),
+                message: Text("서버와의 연결이 불안정합니다. 재연결을 시도합니다"),
                 primaryButton: .destructive(Text("닫기"), action: {
                     presentationMode.wrappedValue.dismiss()
                 }),
                 secondaryButton: .default(
                     Text("재시도"),
                     action: {
-                        if shouldRetryTask {
-                            SM.isLoading = true
-                            TeachalbeMachine(uiImage: PP.selectedImage!) { error in
-                                if error != nil {
-                                    showErrorAlert = true
-                                    shouldRetryTask = true
-                                } else {
-                                    print("Processing completed successfully")
-                                    shouldRetryTask = false
+                        SC.startBackgroundCheck().sink(receiveValue: {
+                            success in
+                            if success {
+                                print("서버 재연결됨")
+                                isCheckServerConnection = true
+                                TeachalbeMachine(uiImage: PP.selectedImage!) { error in
+                                    if let error = error {
+                                        print("Error : \(error.localizedDescription)")
+                                        print("재시도 안 실패 다시 연결 시도 ")
+                                        shouldRetryTask = true
+                                        showErrorAlert = true
+                                        isCheckServerConnection = false
+                                    } else {
+                                        print("Processing compoleted successfully")
+                                        shouldRetryTask = false
+                                    }
                                 }
-
+                            } else {
+                                print("서버 재연결 실패")
                             }
-                        }
+                        }).store(in: &SC.cancellables)
                     }
                 )
             )

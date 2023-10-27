@@ -6,12 +6,26 @@
 //
 
 import SwiftUI
+import Photos
 
-
+func checkAlbumPermission() {
+//    PHPhotoLibrary.requestAuthorization({ status in
+//        switch status {
+//        case .authorized:
+//            print("Album: 권한 허용")
+//        case .denied:
+//            print("Album: 권한 거부")
+//        case .restricted, .notDetermined:
+//            print("Album: 선택하지 않음")
+//        default:
+//            break
+//        }
+//    })
+}
 
 struct HomeView: View {
     // 온보딩 모달 제어용
-    @AppStorage("isFirst") var isFirst: Bool = true
+//    @AppStorage("isFirst") var isFirst: Bool = true
     // 화면 이동 제어용
     @State private var navService: Bool = false
     @State private var navService2: Bool = false
@@ -59,6 +73,8 @@ struct HomeView: View {
                 }
                     .frame(width: size.width, height: size.height)
             }.padding()
+        }.onAppear {
+            checkAlbumPermission()
         }
     }
 
@@ -74,7 +90,7 @@ struct HomeView: View {
                 .foregroundColor(.white)
         }
             .navigationDestination(isPresented: $navService) {
-                ServiceView()
+            ServiceView()
                 .navigationBarHidden(true)
         }
     }
@@ -83,18 +99,18 @@ struct HomeView: View {
     private func ButtonGroup() -> some View {
         HStack {
             Spacer()
-            Button {
-                isFirst.toggle()
-            } label: {
-                Image(systemName: "questionmark.circle")
-                    .foregroundColor(Color.black)
-                    .imageScale(.large)
-                    .fontWeight(.semibold)
-            }.sheet(isPresented: $isFirst) {
-                ModalIntroView(isFirst: $isFirst)
-                    .presentationDetents([.fraction(0.9)])
-                    .presentationDragIndicator(.visible)
-            }.padding(.trailing, 16)
+//            Button {
+//                isFirst.toggle()
+//            } label: {
+//                Image(systemName: "questionmark.circle")
+//                    .foregroundColor(Color.black)
+//                    .imageScale(.large)
+//                    .fontWeight(.semibold)
+//            }.sheet(isPresented: $isFirst) {
+//                ModalIntroView(isFirst: $isFirst)
+//                    .presentationDetents([.fraction(0.9)])
+//                    .presentationDragIndicator(.visible)
+//            }.padding(.trailing, 16)
 
             Button {
                 navService2.toggle()

@@ -14,14 +14,10 @@ struct QuesThird: View {
     @StateObject var SM = ServiceMethod()
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
-
-
+    @StateObject var SC = ServerCheckViewModel()
     @State private var isAnimating: Bool = false
+    @State private var isServerConnection: Bool = false
 
-    @State private var cISize: Double?
-    @State private var cVSize: Double?
-
-    @State private var navService: Bool = false
 
 
     var body: some View {
@@ -29,20 +25,26 @@ struct QuesThird: View {
             let size = geo.size
             VStack {
                 TopArea(height: size.height * 0.2)
-                GeometryReader {
-                    geo in
-                    let inner = geo.size
-                    VStack(spacing: 0) {
-                        PickImage(width: size.width, height: inner.height)
-                    }.frame(height: inner.height)
+                GeometryReader { geo in
+                    let insize = geo.size
+                    PickImage(width: insize.width, height: insize.height)
                 }
-                Spacer()
                 BottomArea(width: size.width * 0.7, height: 50)
             }
                 .frame(width: size.width, height: size.height)
                 .modifier(CAnimating(isAnimating: isAnimating))
         }.onAppear(perform: {
             isAnimating = true
+            SC.startBackgroundCheck().sink(receiveValue: {
+                success in
+                if success {
+                    print("서버 연결됨")
+                    isServerConnection = true
+                } else {
+                    print("서버 재연결 실패")
+                    isServerConnection = false
+                }
+            }).store(in: &SC.cancellables)
         })
     }
 
@@ -66,17 +68,18 @@ struct QuesThird: View {
             }
 
             PhotosPicker(selection: $PP.imageSelection) {
-                SM.TitleImage(image: "camera", height: height) }
-
+                SM.TitleImage(image: "camera", height: height)
+            }
         }
+
     }
     @ViewBuilder
-    private func PickImage(width: Double, height: Double) -> some View {
+    private func PickImage(width: CGFloat, height: CGFloat) -> some View {
         if let image = PP.selectedImage {
             Image(uiImage: image)
                 .resizable()
-                .frame(width: width, height: height)
                 .scaledToFit()
+                .frame(width: width, height: height)
                 .onAppear (perform: {
                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     Task {
@@ -93,25 +96,48 @@ struct QuesThird: View {
 
     @ViewBuilder
     private func GoPredictBtn(width: Double, height: Double) -> some View {
-        if PP.selectedImage != nil {
-            Button {
-                PM.progressAmont = 40
-            } label: {
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(.clear)
-                        .frame(width: width, height: height)
-                        .background(.black)
-                        .cornerRadius(8)
-                    Text("향수 추천받기 👀")
-                        .font(.system(size: 20))
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
+        if isServerConnection {
+            // MARK: 서버 연결 성공시
+            if PP.selectedImage == nil {
+                // 사진 선택 x
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: width, height: height)
+                    .cornerRadius(8)
+            } else {
+                // 사진 선택 o
+                Button {
+                    PM.progressAmont = 40
+                } label: {
+                    ZStack {
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: width, height: height)
+                            .background(.black)
+                            .cornerRadius(8)
+                        Text("향수 추천받기 👀")
+                            .font(.system(size: 20))
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                    }
                 }
+                    .modifier(CAnimatingDelay(isAnimating: false, delay: 0.8, duration: 0.3))
             }
-                .modifier(CAnimatingDelay(isAnimating: false, delay: 0.8, duration: 0.3))
+        } else {
+            // MARK: 서버 연결 실패시
+            ZStack {
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: width, height: height)
+                    .background(.clear)
+                    .cornerRadius(8)
+                Text("서버와 연결중...")
+                    .font(.system(size: 20))
+                    .fontWeight(.semibold)
+            }
         }
     }
+
     @ViewBuilder
     private func BottomArea(width: Double, height: Double) -> some View {
         HStack {

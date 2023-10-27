@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-struct Progressing: View {
+struct LoadingAnimation: View {
     @State private var isAnimating: Bool = false
+    @Binding var isCheckServerConnection: Bool
+    
     var body: some View {
         VStack {
             Spacer()
@@ -50,7 +52,7 @@ struct Progressing: View {
                 isAnimating = false
             }
             Spacer()
-            Text("✨ 향수 검색 중 ✨")
+            Text(isCheckServerConnection ? "✨ 향수 검색 중 ✨" : "서버 연결중...")
                 .font(.system(size: 16, weight: .bold))
                 .offset(y: isAnimating ? -10 : 0)
                 .animation(
@@ -64,5 +66,5 @@ struct Progressing: View {
 }
 
 #Preview {
-    Progressing()
+    LoadingAnimation(isCheckServerConnection: .constant(true))
 }

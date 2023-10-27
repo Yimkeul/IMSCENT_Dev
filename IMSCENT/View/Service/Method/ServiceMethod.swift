@@ -14,6 +14,8 @@ class ServiceMethod: ObservableObject {
     @Published var isSelect: [String?] = [nil, nil, nil]
     @Published var isLoading: Bool = false
     
+    @Published var isServerCheck: Bool = false
+    
 
     func clearSelect(_ index: Int) {
         isSelect[index] = nil

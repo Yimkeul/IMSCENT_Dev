@@ -60,7 +60,6 @@ struct ModalIntroView: View {
 
             CustomPageControl(numberOfPages: numberOfPages, currentPage: $currentPage, isAnimation: $isAnimation)
 
-
             Divider()
                 .padding(.vertical, 16)
 
@@ -84,9 +83,7 @@ struct ModalIntroView: View {
                         .foregroundColor(.white)
                 }
             }.padding(.bottom, 32)
-
         }
-
     }
 }
 
