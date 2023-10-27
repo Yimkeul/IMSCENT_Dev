@@ -35,13 +35,18 @@ struct ServiceView: View {
             case 20...30:
                 QuesThird(SM: SM, PM: PM, PP: PP, SC: SC)
             default:
-                LoadingView(SM: SM, PM: PM, PP: PP)
+                LoadingView(SM: SM, PM: PM, PP: PP, SC: SC)
             }
         }
         .onAppear {
-            if SC.getCheck?.success != true {
-                SC.startBackgroundCheck()
-            }
+            SC.startBackgroundCheck().sink(receiveValue: {
+                success in
+                if success {
+                    print("서버 연결됨")
+                } else {
+                    print("서버 재연결 실패")
+                }
+            }).store(in: &SC.cancellables)
         }
     }
 

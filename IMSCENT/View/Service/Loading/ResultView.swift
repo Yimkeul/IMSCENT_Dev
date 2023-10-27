@@ -110,8 +110,9 @@ struct ResultView: View {
                                 .font(.system(size: 16, weight: .semibold))
                             Text(RV.getRecommand!.resultFilter.title)
                                 .font(.system(size: 22, weight: .bold))
+                                .padding(.bottom, 8)
                             Text("\(RV.getRecommand!.resultFilter.type)향")
-                                .font(.system(size: 18, weight: .medium))
+                                .font(.system(size: 16, weight: .medium))
                         }
                             .padding()
                     }

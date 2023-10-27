@@ -66,8 +66,9 @@ struct LikeListView: View {
                                                 .font(.system(size: 10, weight: .semibold))
                                             Text(perfume.title)
                                                 .font(.system(size: 16, weight: .bold))
+                                                .padding(.bottom, 8)
                                             Text("\(perfume.type)향")
-                                                .font(.system(size: 12, weight: .medium))
+                                                .font(.system(size: 10, weight: .medium))
                                         }
                                         .padding()
                                     }
