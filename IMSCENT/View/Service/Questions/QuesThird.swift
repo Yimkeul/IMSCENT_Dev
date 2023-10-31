@@ -10,7 +10,7 @@ import PhotosUI
 
 struct QuesThird: View {
     // 온보딩 모달 제어용
-    @AppStorage("isDesc") var isDesc: Bool = true
+//    @AppStorage("isDesc") var isDesc: Bool = true
     @StateObject var SM = ServiceMethod()
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
@@ -53,18 +53,18 @@ struct QuesThird: View {
         VStack {
             HStack(alignment: .center, spacing: 4) {
                 SM.Title(title: "사진을 선택해 주세요")
-                Button {
-                    isDesc.toggle()
-                } label: {
-                    Image(systemName: "questionmark.circle")
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.black)
-
-                }.sheet(isPresented: $isDesc) {
-                    ModalQuesDescriptionView(isDesc: $isDesc)
-                        .presentationDetents([.fraction(0.7)])
-                        .presentationDragIndicator(.visible)
-                }
+//                Button {
+//                    isDesc.toggle()
+//                } label: {
+//                    Image(systemName: "questionmark.circle")
+//                        .font(.system(size: 16, weight: .semibold))
+//                        .foregroundColor(.black)
+//
+//                }.sheet(isPresented: $isDesc) {
+//                    ModalQuesDescriptionView(isDesc: $isDesc)
+//                        .presentationDetents([.fraction(0.7)])
+//                        .presentationDragIndicator(.visible)
+//                }
             }
 
             PhotosPicker(selection: $PP.imageSelection) {
