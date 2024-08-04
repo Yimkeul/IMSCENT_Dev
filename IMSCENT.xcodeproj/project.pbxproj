@@ -40,6 +40,7 @@
 		86CBF80E2AC2066C00366A10 /* TeachableMachineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBF80D2AC2066C00366A10 /* TeachableMachineViewModel.swift */; };
 		86CBF8102AC2067F00366A10 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBF80F2AC2067F00366A10 /* Response.swift */; };
 		86CBF8122AC20F6500366A10 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBF8112AC20F6500366A10 /* LoadingView.swift */; };
+		86DBF4F62C5FF496000145A6 /* FashionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 86DBF4F52C5FF496000145A6 /* FashionClassifier.mlmodel */; };
 		86F637FE2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F637FD2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		86CBF80D2AC2066C00366A10 /* TeachableMachineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachableMachineViewModel.swift; sourceTree = "<group>"; };
 		86CBF80F2AC2067F00366A10 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		86CBF8112AC20F6500366A10 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		86DBF4F52C5FF496000145A6 /* FashionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FashionClassifier.mlmodel; sourceTree = "<group>"; };
 		86F637FD2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalQuesDescriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +163,7 @@
 		86B6BB702AB58DB4006344EB /* IMSCENT */ = {
 			isa = PBXGroup;
 			children = (
+				86DBF4D52C5F7E4C000145A6 /* CoreMLData */,
 				86C887192AB6C65C00783D89 /* Utility */,
 				86B6BB802AB58E2C006344EB /* API */,
 				869F24EA2AB91C9600DF9CAA /* ViewModel */,
@@ -226,6 +229,14 @@
 				86F637FF2ABC92AD007C6B49 /* Method */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		86DBF4D52C5F7E4C000145A6 /* CoreMLData */ = {
+			isa = PBXGroup;
+			children = (
+				86DBF4F52C5FF496000145A6 /* FashionClassifier.mlmodel */,
+			);
+			path = CoreMLData;
 			sourceTree = "<group>";
 		};
 		86F637FF2ABC92AD007C6B49 /* Method */ = {
@@ -331,6 +342,7 @@
 				86CBF80E2AC2066C00366A10 /* TeachableMachineViewModel.swift in Sources */,
 				86C8871F2AB6CE2D00783D89 /* ServiceView.swift in Sources */,
 				869F24EC2AB91CA700DF9CAA /* PhotoPickerViewModel.swift in Sources */,
+				86DBF4F62C5FF496000145A6 /* FashionClassifier.mlmodel in Sources */,
 				86CBF8102AC2067F00366A10 /* Response.swift in Sources */,
 				864F4DF52AD448BD006C0FA8 /* SaveViewModel.swift in Sources */,
 				864F4DF72AD44B86006C0FA8 /* LikeListView.swift in Sources */,

@@ -21,7 +21,7 @@ struct LoadingView: View {
 
     @State private var showErrorAlert = false
     @State private var shouldRetryTask = false
-    
+
     @State var isCheckServerConnection: Bool = true
 
     var body: some View {
@@ -57,7 +57,7 @@ struct LoadingView: View {
 
     @ViewBuilder
     private func ProgressView() -> some View {
-        LoadingAnimation(isCheckServerConnection : $isCheckServerConnection)
+        LoadingAnimation(isCheckServerConnection: $isCheckServerConnection)
             .alert(isPresented: $showErrorAlert) {
             Alert(
                 title: Text("오류 발생"),
@@ -122,8 +122,7 @@ struct LoadingView: View {
             }
         }
     }
-
-
+    
 }
 
 #Preview {
