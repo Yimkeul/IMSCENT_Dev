@@ -31,7 +31,7 @@ struct LoadingView: View {
         }
             .onAppear {
             SM.isLoading = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
                 isLoading = false
                 Recommand()
             })

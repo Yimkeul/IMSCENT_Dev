@@ -14,7 +14,6 @@ struct QuesThird: View {
     @StateObject var SM = ServiceMethod()
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
-//    @StateObject var SC = ServerCheckViewModel()
     @State private var isAnimating: Bool = false
     @State private var isServerConnection: Bool = false
 
