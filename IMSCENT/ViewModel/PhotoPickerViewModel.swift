@@ -12,6 +12,7 @@ import CoreML
 import Vision
 
 final class PhotoPickerViewModel: ObservableObject {
+    @Published var detectResult: String = "댄디"
     @Published private(set) var selectedImage: UIImage? = nil
     @Published var imageSelection: PhotosPickerItem? = nil
     {
@@ -86,10 +87,6 @@ final class PhotoPickerViewModel: ObservableObject {
         } catch {
             fatalError("no handler")
         }
-
-
-
-
     }
 }
 

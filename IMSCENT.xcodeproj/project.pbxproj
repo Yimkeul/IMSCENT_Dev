@@ -24,7 +24,6 @@
 		8694DDC12AB9856700636CA1 /* QuesThird.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8694DDC02AB9856700636CA1 /* QuesThird.swift */; };
 		869F24EC2AB91CA700DF9CAA /* PhotoPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F24EB2AB91CA700DF9CAA /* PhotoPickerViewModel.swift */; };
 		869F24F02AB91F1D00DF9CAA /* ServiceMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F24EF2AB91F1D00DF9CAA /* ServiceMethod.swift */; };
-		86A08F4C2AEA211500A7A2CC /* ServerCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A08F4B2AEA211500A7A2CC /* ServerCheckViewModel.swift */; };
 		86B6BB722AB58DB4006344EB /* IMSCENTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6BB712AB58DB4006344EB /* IMSCENTApp.swift */; };
 		86B6BB742AB58DB4006344EB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6BB732AB58DB4006344EB /* HomeView.swift */; };
 		86B6BB762AB58DB5006344EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B6BB752AB58DB5006344EB /* Assets.xcassets */; };
@@ -37,10 +36,10 @@
 		86CBF8072AC205C600366A10 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 86CBF8062AC205C600366A10 /* ReactiveMoya */; };
 		86CBF8092AC205C600366A10 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 86CBF8082AC205C600366A10 /* RxMoya */; };
 		86CBF80C2AC2061A00366A10 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBF80B2AC2061A00366A10 /* Service.swift */; };
-		86CBF80E2AC2066C00366A10 /* TeachableMachineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBF80D2AC2066C00366A10 /* TeachableMachineViewModel.swift */; };
 		86CBF8102AC2067F00366A10 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBF80F2AC2067F00366A10 /* Response.swift */; };
 		86CBF8122AC20F6500366A10 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBF8112AC20F6500366A10 /* LoadingView.swift */; };
 		86DBF4F62C5FF496000145A6 /* FashionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 86DBF4F52C5FF496000145A6 /* FashionClassifier.mlmodel */; };
+		86DBF4F82C600FF4000145A6 /* PerfumeDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DBF4F72C600FF4000145A6 /* PerfumeDB.swift */; };
 		86F637FE2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F637FD2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +57,6 @@
 		8694DDC02AB9856700636CA1 /* QuesThird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuesThird.swift; sourceTree = "<group>"; };
 		869F24EB2AB91CA700DF9CAA /* PhotoPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewModel.swift; sourceTree = "<group>"; };
 		869F24EF2AB91F1D00DF9CAA /* ServiceMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMethod.swift; sourceTree = "<group>"; };
-		86A08F4B2AEA211500A7A2CC /* ServerCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerCheckViewModel.swift; sourceTree = "<group>"; };
 		86B6BB6E2AB58DB4006344EB /* IMSCENT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMSCENT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B6BB712AB58DB4006344EB /* IMSCENTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMSCENTApp.swift; sourceTree = "<group>"; };
 		86B6BB732AB58DB4006344EB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -68,10 +66,10 @@
 		86C8871E2AB6CE2D00783D89 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
 		86C887202AB6CF6F00783D89 /* ProgressBarMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarMethod.swift; sourceTree = "<group>"; };
 		86CBF80B2AC2061A00366A10 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		86CBF80D2AC2066C00366A10 /* TeachableMachineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachableMachineViewModel.swift; sourceTree = "<group>"; };
 		86CBF80F2AC2067F00366A10 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		86CBF8112AC20F6500366A10 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		86DBF4F52C5FF496000145A6 /* FashionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FashionClassifier.mlmodel; sourceTree = "<group>"; };
+		86DBF4F72C600FF4000145A6 /* PerfumeDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfumeDB.swift; sourceTree = "<group>"; };
 		86F637FD2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalQuesDescriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,10 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				869F24EB2AB91CA700DF9CAA /* PhotoPickerViewModel.swift */,
-				86CBF80D2AC2066C00366A10 /* TeachableMachineViewModel.swift */,
 				863D316E2AC9CCBA009922A6 /* RecommandViewModel.swift */,
 				864F4DF42AD448BD006C0FA8 /* SaveViewModel.swift */,
-				86A08F4B2AEA211500A7A2CC /* ServerCheckViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -207,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				86C8871A2AB6C66D00783D89 /* ColorExtension.swift */,
+				86DBF4F72C600FF4000145A6 /* PerfumeDB.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -334,12 +331,11 @@
 			files = (
 				869F24F02AB91F1D00DF9CAA /* ServiceMethod.swift in Sources */,
 				86CBF80C2AC2061A00366A10 /* Service.swift in Sources */,
+				86DBF4F82C600FF4000145A6 /* PerfumeDB.swift in Sources */,
 				8694DDBF2AB9853D00636CA1 /* QuesSecond.swift in Sources */,
 				8694DDBD2AB984D300636CA1 /* QuesFirst.swift in Sources */,
 				86CBF8122AC20F6500366A10 /* LoadingView.swift in Sources */,
 				866F774E2AC2A35E0081C27B /* LoadingAnimation.swift in Sources */,
-				86A08F4C2AEA211500A7A2CC /* ServerCheckViewModel.swift in Sources */,
-				86CBF80E2AC2066C00366A10 /* TeachableMachineViewModel.swift in Sources */,
 				86C8871F2AB6CE2D00783D89 /* ServiceView.swift in Sources */,
 				869F24EC2AB91CA700DF9CAA /* PhotoPickerViewModel.swift in Sources */,
 				86DBF4F62C5FF496000145A6 /* FashionClassifier.mlmodel in Sources */,
