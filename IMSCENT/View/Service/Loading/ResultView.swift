@@ -12,7 +12,6 @@ struct ResultView: View {
     @StateObject var SM = ServiceMethod()
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
-    @StateObject var TM = TeachableViewModel()
     @StateObject var RV = RecommandViewModel()
 
     @StateObject private var SavePerfume = SaveViewModel()
@@ -155,7 +154,6 @@ struct ResultView: View {
         PM.progressAmont = 0.0
         SM.clearAll()
         PP.clearImageData()
-        TM.clearTMData()
     }
 }
 

@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct TeachableModel: Codable {
-    let classProbabilities: [[Double]]
-    let topClassIndex: Int
-    let resultMessage: String
- 
-}
+//struct TeachableModel: Codable {
+//    let classProbabilities: [[Double]]
+//    let topClassIndex: Int
+//    let resultMessage: String
+// 
+//}
 
 struct RecommandModel: Codable {
     let resultFilter: resultFilterValue
@@ -30,6 +30,3 @@ struct resultFilterValue: Codable, Hashable {
     let imglink: String
 }
 
-struct ServerCheckModel: Codable {
-    let success : Bool
-}
