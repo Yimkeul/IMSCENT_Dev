@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LoadingAnimation: View {
     @State private var isAnimating: Bool = false
-    @Binding var isCheckServerConnection: Bool
     
     var body: some View {
         VStack {
@@ -52,7 +51,7 @@ struct LoadingAnimation: View {
                 isAnimating = false
             }
             Spacer()
-            Text(isCheckServerConnection ? "✨ 향수 검색 중 ✨" : "서버 연결중...")
+            Text("✨ 향수 검색 중 ✨")
                 .font(.system(size: 16, weight: .bold))
                 .offset(y: isAnimating ? -10 : 0)
                 .animation(
@@ -66,5 +65,5 @@ struct LoadingAnimation: View {
 }
 
 #Preview {
-    LoadingAnimation(isCheckServerConnection: .constant(true))
+    LoadingAnimation()
 }

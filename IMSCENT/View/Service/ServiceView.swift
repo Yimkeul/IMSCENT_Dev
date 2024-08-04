@@ -12,9 +12,6 @@ struct ServiceView: View {
     @StateObject var SM = ServiceMethod()
     @StateObject var PM = ProgressBarMethod()
     @StateObject var PP = PhotoPickerViewModel()
-    @StateObject var TM = TeachableViewModel()
-    @StateObject var SC = ServerCheckViewModel()
-
     @Environment(\.presentationMode) var presentationMode
     
 
@@ -33,20 +30,10 @@ struct ServiceView: View {
             case 10:
                 QuesSecond(SM: SM, PM: PM, PP: PP)
             case 20...30:
-                QuesThird(SM: SM, PM: PM, PP: PP, SC: SC)
+                QuesThird(SM: SM, PM: PM, PP: PP)
             default:
-                LoadingView(SM: SM, PM: PM, PP: PP, SC: SC)
+                LoadingView(SM: SM, PM: PM, PP: PP)
             }
-        }
-        .onAppear {
-            SC.startBackgroundCheck().sink(receiveValue: {
-                success in
-                if success {
-                    print("서버 연결됨")
-                } else {
-                    print("서버 재연결 실패")
-                }
-            }).store(in: &SC.cancellables)
         }
     }
 
@@ -98,7 +85,6 @@ struct ServiceView: View {
         PM.progressAmont = 0.0
         SM.clearAll()
         PP.clearImageData()
-        TM.clearTMData()
     }
 }
 
