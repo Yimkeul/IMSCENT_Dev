@@ -17,8 +17,8 @@ struct ServiceView: View {
 
     var body: some View {
         VStack {
+            customNavBar()
             if PM.progressAmont <= 30 {
-                customNavBar()
                 ProgressView(value: PM.progressAmont, total: 30)
                     .progressViewStyle(RoundedRectProgressViewStyle())
                     .animation(.linear, value: PM.isAnimating)

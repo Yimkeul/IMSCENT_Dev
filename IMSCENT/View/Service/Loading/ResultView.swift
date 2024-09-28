@@ -18,6 +18,7 @@ struct ResultView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @State private var navHomeView: Bool = false
+    @State private var navLiveView: Bool = false
 
     let UH = UIScreen.main.bounds.height
     let UW = UIScreen.main.bounds.width
@@ -32,7 +33,7 @@ struct ResultView: View {
 
     @ViewBuilder
     private func customNavBar() -> some View {
-        if SM.isLoading != true {
+//        if SM.isLoading == true {
             VStack {
                 HStack {
                     Button {
@@ -55,20 +56,33 @@ struct ResultView: View {
 
                     Spacer()
 
+//                    Button {
+//                        print("None")
+//                    } label: {
+//                        Image(systemName: "house")
+//                            .foregroundColor(.clear)
+//                            .imageScale(.large)
+//                            .fontWeight(.semibold)
+//                    }
+//                        .frame(width: 24)
+//                        .disabled(true)
                     Button {
-                        print("None")
+                        navLiveView.toggle()
                     } label: {
-                        Image(systemName: "house")
-                            .foregroundColor(.clear)
+                        Image(systemName: "heart")
+                            .foregroundColor(Color.black)
                             .imageScale(.large)
                             .fontWeight(.semibold)
+                    } .navigationDestination(isPresented: $navLiveView) {
+                        LikeListView()
+                            .navigationBarHidden(true)
                     }
-                        .frame(width: 24)
-                        .disabled(true)
-                }.padding(.horizontal, 16)
+                    
+                }
+                .padding(.horizontal, 16)
 
                 Divider()
-            }
+//            }
         }
 
     }
@@ -154,6 +168,7 @@ struct ResultView: View {
         PM.progressAmont = 0.0
         SM.clearAll()
         PP.clearImageData()
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

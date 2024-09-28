@@ -18,6 +18,7 @@
 		864F4DF52AD448BD006C0FA8 /* SaveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F4DF42AD448BD006C0FA8 /* SaveViewModel.swift */; };
 		864F4DF72AD44B86006C0FA8 /* LikeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F4DF62AD44B86006C0FA8 /* LikeListView.swift */; };
 		864F4DFB2AD474D0006C0FA8 /* LikeSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F4DFA2AD474D0006C0FA8 /* LikeSelectedView.swift */; };
+		865DEA852CA7FA80006F4B9E /* PerfumeDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DEA842CA7FA80006F4B9E /* PerfumeDB.swift */; };
 		866F774E2AC2A35E0081C27B /* LoadingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866F774D2AC2A35E0081C27B /* LoadingAnimation.swift */; };
 		8694DDBD2AB984D300636CA1 /* QuesFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8694DDBC2AB984D300636CA1 /* QuesFirst.swift */; };
 		8694DDBF2AB9853D00636CA1 /* QuesSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8694DDBE2AB9853D00636CA1 /* QuesSecond.swift */; };
@@ -39,7 +40,6 @@
 		86CBF8102AC2067F00366A10 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBF80F2AC2067F00366A10 /* Response.swift */; };
 		86CBF8122AC20F6500366A10 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBF8112AC20F6500366A10 /* LoadingView.swift */; };
 		86DBF4F62C5FF496000145A6 /* FashionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 86DBF4F52C5FF496000145A6 /* FashionClassifier.mlmodel */; };
-		86DBF4F82C600FF4000145A6 /* PerfumeDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DBF4F72C600FF4000145A6 /* PerfumeDB.swift */; };
 		86F637FE2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F637FD2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +51,8 @@
 		864F4DF42AD448BD006C0FA8 /* SaveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveViewModel.swift; sourceTree = "<group>"; };
 		864F4DF62AD44B86006C0FA8 /* LikeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeListView.swift; sourceTree = "<group>"; };
 		864F4DFA2AD474D0006C0FA8 /* LikeSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeSelectedView.swift; sourceTree = "<group>"; };
+		865DEA842CA7FA80006F4B9E /* PerfumeDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfumeDB.swift; sourceTree = "<group>"; };
+		865DEA862CA7FACA006F4B9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		866F774D2AC2A35E0081C27B /* LoadingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimation.swift; sourceTree = "<group>"; };
 		8694DDBC2AB984D300636CA1 /* QuesFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuesFirst.swift; sourceTree = "<group>"; };
 		8694DDBE2AB9853D00636CA1 /* QuesSecond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuesSecond.swift; sourceTree = "<group>"; };
@@ -69,7 +71,6 @@
 		86CBF80F2AC2067F00366A10 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		86CBF8112AC20F6500366A10 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		86DBF4F52C5FF496000145A6 /* FashionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FashionClassifier.mlmodel; sourceTree = "<group>"; };
-		86DBF4F72C600FF4000145A6 /* PerfumeDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfumeDB.swift; sourceTree = "<group>"; };
 		86F637FD2ABBF57F007C6B49 /* ModalQuesDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalQuesDescriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +160,7 @@
 		86B6BB702AB58DB4006344EB /* IMSCENT */ = {
 			isa = PBXGroup;
 			children = (
+				865DEA862CA7FACA006F4B9E /* Info.plist */,
 				86DBF4D52C5F7E4C000145A6 /* CoreMLData */,
 				86C887192AB6C65C00783D89 /* Utility */,
 				86B6BB802AB58E2C006344EB /* API */,
@@ -203,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				86C8871A2AB6C66D00783D89 /* ColorExtension.swift */,
-				86DBF4F72C600FF4000145A6 /* PerfumeDB.swift */,
+				865DEA842CA7FA80006F4B9E /* PerfumeDB.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -283,7 +285,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					86B6BB6D2AB58DB4006344EB = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -292,11 +294,11 @@
 			};
 			buildConfigurationList = 86B6BB692AB58DB4006344EB /* Build configuration list for PBXProject "IMSCENT" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				ko,
 			);
 			mainGroup = 86B6BB652AB58DB4006344EB;
 			packageReferences = (
@@ -331,7 +333,6 @@
 			files = (
 				869F24F02AB91F1D00DF9CAA /* ServiceMethod.swift in Sources */,
 				86CBF80C2AC2061A00366A10 /* Service.swift in Sources */,
-				86DBF4F82C600FF4000145A6 /* PerfumeDB.swift in Sources */,
 				8694DDBF2AB9853D00636CA1 /* QuesSecond.swift in Sources */,
 				8694DDBD2AB984D300636CA1 /* QuesFirst.swift in Sources */,
 				86CBF8122AC20F6500366A10 /* LoadingView.swift in Sources */,
@@ -342,6 +343,7 @@
 				86CBF8102AC2067F00366A10 /* Response.swift in Sources */,
 				864F4DF52AD448BD006C0FA8 /* SaveViewModel.swift in Sources */,
 				864F4DF72AD44B86006C0FA8 /* LikeListView.swift in Sources */,
+				865DEA852CA7FA80006F4B9E /* PerfumeDB.swift in Sources */,
 				863D316B2AC974F7009922A6 /* FBTest.swift in Sources */,
 				863D31712ACAF6B1009922A6 /* ResultView.swift in Sources */,
 				863D316F2AC9CCBA009922A6 /* RecommandViewModel.swift in Sources */,
@@ -396,6 +398,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -457,6 +460,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -489,6 +493,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = Y333NVBXPT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IMSCENT/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 사용";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -497,11 +502,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Yimkeul.IMSCENT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -529,6 +535,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = Y333NVBXPT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IMSCENT/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 사용";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -537,11 +544,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Yimkeul.IMSCENT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
